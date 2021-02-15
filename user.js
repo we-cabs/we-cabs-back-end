@@ -10,24 +10,24 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
    const requestBody = JSON.parse(event.body);
-   const name = requestBody.name;
+   const fullname = requestBody.fullname;
    const phone = requestBody.phone;
    const email = requestBody.email;
    const password = requestBody.password;
 
-   if (typeof name !== 'string' || typeof phone !== 'string' || typeof email !== 'string'|| typeof password !== 'string') {
+   if (typeof fullname !== 'string' || typeof phone !== 'string' || typeof email !== 'string'|| typeof password !== 'string') {
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit user because of validation errors.'));
       return;
    }
 
-   submitUser(userInfo(name, phone,email, password))
+   submitUser(userInfo(fullname, phone,email, password))
        .then(res => {
           callback(null, {
              statusCode: 200,
              body: JSON.stringify({
                 message: `Successfully submitted user with email ${email}`,
-                userId: res.id
+                userId: res.email
              })
           });
        })
@@ -53,11 +53,11 @@ const submitUser = user => {
        .then(res => user);
 };
 
-const userInfo = (name, phone,email, password) => {
+const userInfo = (fullname, phone,email, password) => {
    const timestamp = new Date().getTime();
    return {
-      id: uuid.v1(),
-      name: name,
+      // id: uuid.v1(),
+      fullname: fullname,
       email: email,
       phone: phone,
       password: password,
@@ -69,7 +69,7 @@ const userInfo = (name, phone,email, password) => {
 module.exports.list = (event, context, callback) => {
    var params = {
       TableName: process.env.USER_TABLE,
-      ProjectionExpression: "id, name, email, phone, password"
+      ProjectionExpression: "fullname, email, phone, password"
    };
 
    console.log("Scanning User table.");
@@ -98,7 +98,7 @@ module.exports.get = (event, context, callback) => {
    const params = {
       TableName: process.env.USER_TABLE,
       Key: {
-         id: event.pathParameters.id,
+         email: event.pathParameters.email,
       },
    };
 

@@ -89,6 +89,42 @@
         "LogGroupName": "/aws/lambda/wecabs-dev-userList"
       }
     },
+    "BookingPutLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bookingPut"
+      }
+    },
+    "BookingGetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bookingGet"
+      }
+    },
+    "BookingListLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bookingList"
+      }
+    },
+    "BidPutLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bidPut"
+      }
+    },
+    "BidGetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bidGet"
+      }
+    },
+    "BidListLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-bidList"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -183,7 +219,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1613271899257-2021-02-14T03:04:59.257Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
         },
         "Handler": "api/user.put",
         "Runtime": "nodejs12.x",
@@ -193,7 +229,9 @@
         "Description": "put user details",
         "Environment": {
           "Variables": {
-            "USER_TABLE": "wecabs-dev"
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
           }
         },
         "Role": {
@@ -214,7 +252,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1613271899257-2021-02-14T03:04:59.257Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
         },
         "Handler": "api/user.get",
         "Runtime": "nodejs12.x",
@@ -223,7 +261,9 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "USER_TABLE": "wecabs-dev"
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
           }
         },
         "Role": {
@@ -244,17 +284,19 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1613271899257-2021-02-14T03:04:59.257Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
         },
         "Handler": "api/user.list",
         "Runtime": "nodejs12.x",
         "FunctionName": "wecabs-dev-userList",
         "MemorySize": 128,
         "Timeout": 6,
-        "Description": "list all Users details",
+        "Description": "list all users details",
         "Environment": {
           "Variables": {
-            "USER_TABLE": "wecabs-dev"
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
           }
         },
         "Role": {
@@ -268,35 +310,295 @@
         "UserListLogGroup"
       ]
     },
-    "UserGetLambdaVersionXfj6ktKy9rcPgDZbVqeCpozUjnVuPnXIpK6kl1ikLzA": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
+    "BookingPutLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
       "Properties": {
-        "FunctionName": {
-          "Ref": "UserGetLambdaFunction"
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
         },
-        "CodeSha256": "zqELtBiKMfGbZD5Ye0Xxl9GzLQgxqJpY/rDMTRdoLuU="
-      }
+        "Handler": "api/booking.put",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bookingPut",
+        "MemorySize": 128,
+        "Timeout": 6,
+        "Description": "put booking details",
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BookingPutLogGroup"
+      ]
     },
-    "UserListLambdaVersionaKJm6hakzeI7Rpw5joirGtdzLRPzzYSrBGeFw5MlJ8": {
+    "BookingGetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+        },
+        "Handler": "api/booking.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bookingGet",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BookingGetLogGroup"
+      ]
+    },
+    "BookingListLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+        },
+        "Handler": "api/booking.list",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bookingList",
+        "MemorySize": 128,
+        "Timeout": 6,
+        "Description": "list all bookings details",
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BookingListLogGroup"
+      ]
+    },
+    "BidPutLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+        },
+        "Handler": "api/bid.put",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bidPut",
+        "MemorySize": 128,
+        "Timeout": 6,
+        "Description": "put bid details",
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BidPutLogGroup"
+      ]
+    },
+    "BidGetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+        },
+        "Handler": "api/bid.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bidGet",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BidGetLogGroup"
+      ]
+    },
+    "BidListLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+        },
+        "Handler": "api/bid.list",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-bidList",
+        "MemorySize": 128,
+        "Timeout": 6,
+        "Description": "list all bids details",
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev",
+            "BOOKING_TABLE": "wecabs-dev",
+            "BID_TABLE": "wecabs-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "BidListLogGroup"
+      ]
+    },
+    "UserListLambdaVersionl3ZkVR21smMVfHM5AA6bHpQz5VNV5YH32sl7S7ro": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UserListLambdaFunction"
         },
-        "CodeSha256": "zqELtBiKMfGbZD5Ye0Xxl9GzLQgxqJpY/rDMTRdoLuU=",
-        "Description": "list all Users details"
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+        "Description": "list all users details"
       }
     },
-    "UserPutLambdaVersionpiMvyQWdEgIa4zr1Tq9tSpRrOCNaY9aV5QeuwmryU": {
+    "UserGetLambdaVersionwUidjnNfuSlKT8hYhRg5Ev8zQBtkt2TLOl4V8R6BPuM": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UserGetLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+      }
+    },
+    "BookingListLambdaVersiongPUlonFuyWc1R8iqqvX9AzjoIkD3IhIDa2onUqO0oGo": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingListLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+        "Description": "list all bookings details"
+      }
+    },
+    "BidPutLambdaVersionm2O76MKObLUA0cPsoadAjkqjx15htYiHHqbhbLs7LlU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidPutLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+        "Description": "put bid details"
+      }
+    },
+    "BookingGetLambdaVersiongT5iRCeazZVppKDlOVn6zf9jfiBJEG9SAwgeyE2Jfw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingGetLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+      }
+    },
+    "BookingPutLambdaVersionjVnzAkoceuDGhmH1Dg4W2tyB8gzdooHoYiAUkpQwS4": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingPutLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+        "Description": "put booking details"
+      }
+    },
+    "BidGetLambdaVersionnPk3lTTzKVQv8J4IpYOi0EVQAH4BKiGR1OIg3gsQcg": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidGetLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+      }
+    },
+    "BidListLambdaVersionrmVkEuULfe1EmPYhXCKtXJ84k8Dznh6fDDekCbnoBY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidListLambdaFunction"
+        },
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+        "Description": "list all bids details"
+      }
+    },
+    "UserPutLambdaVersion6DGDAWxvhLFyKQf0PrYvF54KPCcqumDn3yQgCj7g": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UserPutLambdaFunction"
         },
-        "CodeSha256": "zqELtBiKMfGbZD5Ye0Xxl9GzLQgxqJpY/rDMTRdoLuU=",
+        "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
         "Description": "put user details"
       }
     },
@@ -327,13 +629,67 @@
         }
       }
     },
-    "ApiGatewayResourceUserIdVar": {
+    "ApiGatewayResourceUserEmailVar": {
       "Type": "AWS::ApiGateway::Resource",
       "Properties": {
         "ParentId": {
           "Ref": "ApiGatewayResourceUser"
         },
-        "PathPart": "{id}",
+        "PathPart": "{email}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceBooking": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "booking",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceBookingBookingidVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceBooking"
+        },
+        "PathPart": "{bookingId}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceBid": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "bid",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceBidBididVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceBid"
+        },
+        "PathPart": "{bidId}",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -382,13 +738,13 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayMethodUserIdVarGet": {
+    "ApiGatewayMethodUserEmailVarGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
         "HttpMethod": "GET",
         "RequestParameters": {},
         "ResourceId": {
-          "Ref": "ApiGatewayResourceUserIdVar"
+          "Ref": "ApiGatewayResourceUserEmailVar"
         },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
@@ -468,7 +824,265 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1613271895790": {
+    "ApiGatewayMethodBookingPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBooking"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BookingPutLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodBookingBookingidVarGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBookingBookingidVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BookingGetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodBookingGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBooking"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BookingListLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodBidPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBid"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BidPutLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodBidBididVarGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBidBididVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BidGetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodBidGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceBid"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "BidListLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1613366260768": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -478,8 +1092,14 @@
       },
       "DependsOn": [
         "ApiGatewayMethodUserPost",
-        "ApiGatewayMethodUserIdVarGet",
-        "ApiGatewayMethodUserGet"
+        "ApiGatewayMethodUserEmailVarGet",
+        "ApiGatewayMethodUserGet",
+        "ApiGatewayMethodBookingPost",
+        "ApiGatewayMethodBookingBookingidVarGet",
+        "ApiGatewayMethodBookingGet",
+        "ApiGatewayMethodBidPost",
+        "ApiGatewayMethodBidBididVarGet",
+        "ApiGatewayMethodBidGet"
       ]
     },
     "UserPutLambdaPermissionApiGateway": {
@@ -593,19 +1213,293 @@
         }
       }
     },
+    "BookingPutLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BookingPutLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "BookingGetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BookingGetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "BookingListLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BookingListLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "BidPutLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BidPutLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "BidGetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BidGetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "BidListLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "BidListLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
     "UserDynamoDbTable": {
       "Type": "AWS::DynamoDB::Table",
       "DeletionPolicy": "Retain",
       "Properties": {
         "AttributeDefinitions": [
           {
-            "AttributeName": "id",
+            "AttributeName": "email",
             "AttributeType": "S"
           }
         ],
         "KeySchema": [
           {
-            "AttributeName": "id",
+            "AttributeName": "email",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        },
+        "StreamSpecification": {
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        },
+        "TableName": "wecabs-dev"
+      }
+    },
+    "BookingDynamoDbTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "bookingId",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "bookingId",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        },
+        "StreamSpecification": {
+          "StreamViewType": "NEW_AND_OLD_IMAGES"
+        },
+        "TableName": "wecabs-dev"
+      }
+    },
+    "BidDynamoDbTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "bidId",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "bidId",
             "KeyType": "HASH"
           }
         ],
@@ -626,22 +1520,58 @@
         "Ref": "ServerlessDeploymentBucket"
       }
     },
-    "UserGetLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "UserGetLambdaVersionXfj6ktKy9rcPgDZbVqeCpozUjnVuPnXIpK6kl1ikLzA"
-      }
-    },
     "UserListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UserListLambdaVersionaKJm6hakzeI7Rpw5joirGtdzLRPzzYSrBGeFw5MlJ8"
+        "Ref": "UserListLambdaVersionl3ZkVR21smMVfHM5AA6bHpQz5VNV5YH32sl7S7ro"
+      }
+    },
+    "UserGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UserGetLambdaVersionwUidjnNfuSlKT8hYhRg5Ev8zQBtkt2TLOl4V8R6BPuM"
+      }
+    },
+    "BookingListLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingListLambdaVersiongPUlonFuyWc1R8iqqvX9AzjoIkD3IhIDa2onUqO0oGo"
+      }
+    },
+    "BidPutLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidPutLambdaVersionm2O76MKObLUA0cPsoadAjkqjx15htYiHHqbhbLs7LlU"
+      }
+    },
+    "BookingGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingGetLambdaVersiongT5iRCeazZVppKDlOVn6zf9jfiBJEG9SAwgeyE2Jfw"
+      }
+    },
+    "BookingPutLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingPutLambdaVersionjVnzAkoceuDGhmH1Dg4W2tyB8gzdooHoYiAUkpQwS4"
+      }
+    },
+    "BidGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidGetLambdaVersionnPk3lTTzKVQv8J4IpYOi0EVQAH4BKiGR1OIg3gsQcg"
+      }
+    },
+    "BidListLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidListLambdaVersionrmVkEuULfe1EmPYhXCKtXJ84k8Dznh6fDDekCbnoBY"
       }
     },
     "UserPutLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UserPutLambdaVersionpiMvyQWdEgIa4zr1Tq9tSpRrOCNaY9aV5QeuwmryU"
+        "Ref": "UserPutLambdaVersion6DGDAWxvhLFyKQf0PrYvF54KPCcqumDn3yQgCj7g"
       }
     },
     "ServiceEndpoint": {

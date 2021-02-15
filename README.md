@@ -1,34 +1,100 @@
 # wecabs-backend
-sample api call (user/put)
 
-![alt text](./imgs/1.png)
+#DB:
+###1- USER
 
-TODO:
+      fullname 
+      email 
+      phone 
+      carsBooked
+      carsAvailable
+      carsDetails
+      submittedAt 
+      updatedAt
+            
+###2- BOOKING
+        
+      bookingId
+      pickupPoint
+      dropPoint
+      pickupTime
+      carType
+      expiryTime
+      distance
+      customerDetails
+      allotedBid
+      
+###3- BID
 
-Api:
+      bidId
+      linkedUserId
+      linkedBookingId
+      amount
+      carPlate
+      submittedAt 
+      updatedAt   
+  
+#Api:
 
-1- registration (db)
-get call - pass/username is good /not
-Put call - create user, profile
+##1- user (db)
+POST USER
+GET USER
+LIST USER
 
-Get profile - json
+##2- booking (db)
 
+POST BOOKING
+GET BOOKING
+LIST BOOKING
 
-2- Booking api (db)
+##3- bid (db)
 
-Get call (one way) - 4 json
-Put call ( mark done, bidding) - true 
-Get call (driver) - specific bookings , with status 
-
-3- Availability (db)
-
-Put call - submit data 
+POST BID
+GET BID
+LIST BID
 
 ```
 endpoints:
-  POST - https://42u245s7jb.execute-api.us-west-2.amazonaws.com/dev/user
-  GET - https://42u245s7jb.execute-api.us-west-2.amazonaws.com/dev/user/{id}
-  GET - https://42u245s7jb.execute-api.us-west-2.amazonaws.com/dev/user
+  POST - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
+  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user/{email}
+  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
 ```
 
+#CURL:
+
+##1- user (db)
+POST USER
+```
+curl -H "Content-Type: application/json" -X POST -d '{"fullname":"Test","email": "test@gmail.com", "password":"12", "phone":"1"}' https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
+```
+
+```
+{"message":"Successfully submitted user with email test@gmail.com","userId":"test@gmail.com"}sh-3.2# 
+```
+
+GET USER
+
+```
+curl https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user/test@gmail.com
+```
+
+```
+{"password":"12","email":"test@gmail.com","phone":"1","fullname":"Test","submittedAt":1613347705421,"updatedAt":1613347705421}sh-3.2# 
+```
+
+LIST USERS
+
+```
+curl https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
+
+```
+
+```
+{"users":[{"password":"12","email":"t1est@gmail.com","fullname":"Test","phone":"1"},{"password":"12","email":"test@gmail.com","fullname":"Test","phone":"1"}]}
+```
+
+SERVERLESS DEPLOY
+```
+serverless deploy
+```
 ![alt text](./imgs/2.png)

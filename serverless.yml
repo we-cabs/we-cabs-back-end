@@ -26,7 +26,9 @@ provider:
   region: us-west-2
   environment:
     USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-#    CANDIDATE_EMAIL_TABLE: "candidate-email-${opt:stage, self:provider.stage}"
+    BOOKING_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    BID_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -36,6 +38,9 @@ provider:
         - dynamodb:PutItem
       Resource: "*"
 functions:
+
+ # user api functions
+
   userPut:
     handler: api/user.put
     memorySize: 128
@@ -48,16 +53,67 @@ functions:
     handler: api/user.get
     events:
       - http:
-          path: user/{id}
+          path: user/{email}
           method: get
   userList:
     handler: api/user.list
     memorySize: 128
-    description: list all Users details
+    description: list all users details
     events:
       - http:
           path: user
           method: get
+
+  # booking api functions
+
+  bookingPut:
+    handler: api/booking.put
+    memorySize: 128
+    description: put booking details
+    events:
+      - http:
+          path: booking
+          method: post
+  bookingGet:
+    handler: api/booking.get
+    events:
+      - http:
+          path: booking/{bookingId}
+          method: get
+  bookingList:
+    handler: api/booking.list
+    memorySize: 128
+    description: list all bookings details
+    events:
+      - http:
+          path: booking
+          method: get
+
+  # bid api functions
+
+  bidPut:
+    handler: api/bid.put
+    memorySize: 128
+    description: put bid details
+    events:
+      - http:
+          path: bid
+          method: post
+  bidGet:
+    handler: api/bid.get
+    events:
+      - http:
+          path: bid/{bidId}
+          method: get
+  bidList:
+    handler: api/bid.list
+    memorySize: 128
+    description: list all bids details
+    events:
+      - http:
+          path: bid
+          method: get
+
 resources:
   Resources:
     UserDynamoDbTable:
@@ -66,11 +122,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: "id"
+            AttributeName: "email"
             AttributeType: "S"
         KeySchema:
           -
-            AttributeName: "id"
+            AttributeName: "email"
             KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -78,3 +134,41 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.USER_TABLE}
+
+    BookingDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "bookingId"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "bookingId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.BOOKING_TABLE}
+
+    BidDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "bidId"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "bidId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.BID_TABLE}
