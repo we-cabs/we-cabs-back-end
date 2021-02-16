@@ -1,11 +1,7 @@
 # Welcome to Serverless!
 #
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
-#
+# This file is the main config file for wecabs service.
+
 # For full config options, check the docs:
 #    docs.serverless.com
 #
@@ -25,9 +21,9 @@ provider:
   stage: dev
   region: us-west-2
   environment:
-    USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-    BOOKING_TABLE: ${self:service}-${opt:stage, self:provider.stage}
-    BID_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}-USER_TABLE
+    BOOKING_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BOOKING_TABLE
+    BID_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BID_TABLE
 
   iamRoleStatements:
     - Effect: Allow
@@ -49,12 +45,15 @@ functions:
       - http:
           path: user
           method: post
+          cors: true
   userGet:
     handler: api/user.get
     events:
       - http:
           path: user/{email}
           method: get
+          cors: true
+
   userList:
     handler: api/user.list
     memorySize: 128
@@ -63,6 +62,7 @@ functions:
       - http:
           path: user
           method: get
+          cors: true
 
   # booking api functions
 
@@ -74,12 +74,16 @@ functions:
       - http:
           path: booking
           method: post
+          cors: true
+
   bookingGet:
     handler: api/booking.get
     events:
       - http:
           path: booking/{bookingId}
           method: get
+          cors: true
+
   bookingList:
     handler: api/booking.list
     memorySize: 128
@@ -88,6 +92,7 @@ functions:
       - http:
           path: booking
           method: get
+          cors: true
 
   # bid api functions
 
@@ -99,12 +104,16 @@ functions:
       - http:
           path: bid
           method: post
+          cors: true
+
   bidGet:
     handler: api/bid.get
     events:
       - http:
           path: bid/{bidId}
           method: get
+          cors: true
+
   bidList:
     handler: api/bid.list
     memorySize: 128
@@ -113,6 +122,7 @@ functions:
       - http:
           path: bid
           method: get
+          cors: true
 
 resources:
   Resources:

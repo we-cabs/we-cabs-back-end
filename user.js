@@ -1,7 +1,7 @@
 'use strict';
 
 
-const uuid = require('uuid');
+// const uuid = require('uuid');
 const AWS = require('aws-sdk');
 
 AWS.config.setPromisesDependency(require('bluebird'));
@@ -24,7 +24,10 @@ module.exports.put = (event, context, callback) => {
    submitUser(userInfo(fullname, phone,email, password))
        .then(res => {
           callback(null, {
-             statusCode: 200,
+             statusCode: 200,headers: {
+                "Access-Control-Allow-Origin": "*"
+             },
+
              body: JSON.stringify({
                 message: `Successfully submitted user with email ${email}`,
                 userId: res.email
@@ -82,6 +85,9 @@ module.exports.list = (event, context, callback) => {
          console.log("Scan succeeded.");
          return callback(null, {
             statusCode: 200,
+            headers: {
+               "Access-Control-Allow-Origin": "*"
+            },
             body: JSON.stringify({
                users: data.Items
             })
@@ -105,7 +111,10 @@ module.exports.get = (event, context, callback) => {
    dynamoDb.get(params).promise()
        .then(result => {
           const response = {
-             statusCode: 200,
+             statusCode: 200,headers: {
+                "Access-Control-Allow-Origin": "*"
+             },
+
              body: JSON.stringify(result.Item),
           };
           callback(null, response);

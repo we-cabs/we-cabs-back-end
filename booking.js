@@ -28,7 +28,10 @@ module.exports.put = (event, context, callback) => {
    submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid))
        .then(res => {
           callback(null, {
-             statusCode: 200,
+             statusCode: 200,headers: {
+                "Access-Control-Allow-Origin": "*"
+             },
+
              body: JSON.stringify({
                 message: `Successfully submitted booking`,
                 bidId: res.bidId
@@ -89,7 +92,10 @@ module.exports.list = (event, context, callback) => {
       } else {
          console.log("Scan succeeded.");
          return callback(null, {
-            statusCode: 200,
+            statusCode: 200,headers: {
+               "Access-Control-Allow-Origin": "*"
+            },
+
             body: JSON.stringify({
                bookings: data.Items
             })
@@ -113,7 +119,10 @@ module.exports.get = (event, context, callback) => {
    dynamoDb.get(params).promise()
        .then(result => {
           const response = {
-             statusCode: 200,
+             statusCode: 200,headers: {
+                "Access-Control-Allow-Origin": "*"
+             },
+
              body: JSON.stringify(result.Item),
           };
           callback(null, response);

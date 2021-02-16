@@ -10,9 +10,9 @@
       "stage": "dev",
       "region": "us-west-2",
       "environment": {
-        "USER_TABLE": "wecabs-dev",
-        "BOOKING_TABLE": "wecabs-dev",
-        "BID_TABLE": "wecabs-dev"
+        "USER_TABLE": "wecabs-dev-USER_TABLE",
+        "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+        "BID_TABLE": "wecabs-dev-BID_TABLE"
       },
       "iamRoleStatements": [
         {
@@ -242,7 +242,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/user.put",
               "Runtime": "nodejs12.x",
@@ -252,9 +252,9 @@
               "Description": "put user details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -275,7 +275,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/user.get",
               "Runtime": "nodejs12.x",
@@ -284,9 +284,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -307,7 +307,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/user.list",
               "Runtime": "nodejs12.x",
@@ -317,9 +317,9 @@
               "Description": "list all users details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -340,7 +340,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/booking.put",
               "Runtime": "nodejs12.x",
@@ -350,9 +350,9 @@
               "Description": "put booking details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -373,7 +373,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/booking.get",
               "Runtime": "nodejs12.x",
@@ -382,9 +382,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -405,7 +405,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/booking.list",
               "Runtime": "nodejs12.x",
@@ -415,9 +415,9 @@
               "Description": "list all bookings details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -438,7 +438,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/bid.put",
               "Runtime": "nodejs12.x",
@@ -448,9 +448,9 @@
               "Description": "put bid details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -471,7 +471,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/bid.get",
               "Runtime": "nodejs12.x",
@@ -480,9 +480,9 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -503,7 +503,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z/wecabs.zip"
               },
               "Handler": "api/bid.list",
               "Runtime": "nodejs12.x",
@@ -513,9 +513,9 @@
               "Description": "list all bids details",
               "Environment": {
                 "Variables": {
-                  "USER_TABLE": "wecabs-dev",
-                  "BOOKING_TABLE": "wecabs-dev",
-                  "BID_TABLE": "wecabs-dev"
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE"
                 }
               },
               "Role": {
@@ -529,99 +529,99 @@
               "BidListLogGroup"
             ]
           },
-          "UserListLambdaVersionl3ZkVR21smMVfHM5AA6bHpQz5VNV5YH32sl7S7ro": {
+          "UserListLambdaVersionkGnmTeTmpaKbqmvU7Yibamq0r6Ic7YjSoMypMqGnKQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UserListLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
               "Description": "list all users details"
             }
           },
-          "UserGetLambdaVersionwUidjnNfuSlKT8hYhRg5Ev8zQBtkt2TLOl4V8R6BPuM": {
+          "UserGetLambdaVersionhBowEWYgg7IC2vEtlW958ky9xKepwXFNW2INkIw7w8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UserGetLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY="
             }
           },
-          "BookingListLambdaVersiongPUlonFuyWc1R8iqqvX9AzjoIkD3IhIDa2onUqO0oGo": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "BookingListLambdaFunction"
-              },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
-              "Description": "list all bookings details"
-            }
-          },
-          "BidPutLambdaVersionm2O76MKObLUA0cPsoadAjkqjx15htYiHHqbhbLs7LlU": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "BidPutLambdaFunction"
-              },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
-              "Description": "put bid details"
-            }
-          },
-          "BookingGetLambdaVersiongT5iRCeazZVppKDlOVn6zf9jfiBJEG9SAwgeyE2Jfw": {
+          "BookingGetLambdaVersionXYQwPOuVlKFIbDsMVN5dsPHTl8VZsihnYaPAk78": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BookingGetLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY="
             }
           },
-          "BookingPutLambdaVersionjVnzAkoceuDGhmH1Dg4W2tyB8gzdooHoYiAUkpQwS4": {
+          "BookingPutLambdaVersionibjI0tx1gySuV56tYXvZRNsSHMerJgxsrUkOUOoFts": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BookingPutLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
               "Description": "put booking details"
             }
           },
-          "BidGetLambdaVersionnPk3lTTzKVQv8J4IpYOi0EVQAH4BKiGR1OIg3gsQcg": {
+          "BookingListLambdaVersionwSXemSA0UMV2ei2ahsNoMcmkLnFgFqkEXxme7PH5g": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BookingListLambdaFunction"
+              },
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
+              "Description": "list all bookings details"
+            }
+          },
+          "BidPutLambdaVersionEkNTI55FiOOGkwotne7lqBH7OTQBV1QjwdA7rnucx4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BidPutLambdaFunction"
+              },
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
+              "Description": "put bid details"
+            }
+          },
+          "BidGetLambdaVersionaNvKQGPU1Bl81pLa6G3ivTplODW1ZH7Tc6AQoaN9c": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BidGetLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY="
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY="
             }
           },
-          "BidListLambdaVersionrmVkEuULfe1EmPYhXCKtXJ84k8Dznh6fDDekCbnoBY": {
+          "BidListLambdaVersion7MuZlK3WXQ6hyId5mVUWDRehNAN1J057gmrxX5u8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BidListLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
               "Description": "list all bids details"
             }
           },
-          "UserPutLambdaVersion6DGDAWxvhLFyKQf0PrYvF54KPCcqumDn3yQgCj7g": {
+          "UserPutLambdaVersionteBEJz1aFwDu8cODfwKN9tlKQw9E7jsqprzosig3iQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UserPutLambdaFunction"
               },
-              "CodeSha256": "VbQ/csIOUVLz2Q91qMzHNvEvXP8Eyis1wtfq34e2cWY=",
+              "CodeSha256": "IMb7GYPR1izcHk6MSxGSpW+g2iEHaOXxfw2nS7rTVpY=",
               "Description": "put user details"
             }
           },
@@ -713,6 +713,276 @@
                 "Ref": "ApiGatewayResourceBid"
               },
               "PathPart": "{bidId}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodUserOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUser"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodUserEmailVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUserEmailVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBookingOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBooking"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBookingBookingidVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookingBookingidVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBidOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBid"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBidBididVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBidBididVar"
+              },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -1105,7 +1375,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1613366260768": {
+          "ApiGatewayDeployment1613454590474": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1114,6 +1384,12 @@
               "StageName": "dev"
             },
             "DependsOn": [
+              "ApiGatewayMethodUserOptions",
+              "ApiGatewayMethodUserEmailVarOptions",
+              "ApiGatewayMethodBookingOptions",
+              "ApiGatewayMethodBookingBookingidVarOptions",
+              "ApiGatewayMethodBidOptions",
+              "ApiGatewayMethodBidBididVarOptions",
               "ApiGatewayMethodUserPost",
               "ApiGatewayMethodUserEmailVarGet",
               "ApiGatewayMethodUserGet",
@@ -1481,7 +1757,7 @@
               "StreamSpecification": {
                 "StreamViewType": "NEW_AND_OLD_IMAGES"
               },
-              "TableName": "wecabs-dev"
+              "TableName": "wecabs-dev-USER_TABLE"
             }
           },
           "BookingDynamoDbTable": {
@@ -1507,7 +1783,7 @@
               "StreamSpecification": {
                 "StreamViewType": "NEW_AND_OLD_IMAGES"
               },
-              "TableName": "wecabs-dev"
+              "TableName": "wecabs-dev-BOOKING_TABLE"
             }
           },
           "BidDynamoDbTable": {
@@ -1533,7 +1809,7 @@
               "StreamSpecification": {
                 "StreamViewType": "NEW_AND_OLD_IMAGES"
               },
-              "TableName": "wecabs-dev"
+              "TableName": "wecabs-dev-BID_TABLE"
             }
           }
         },
@@ -1546,55 +1822,55 @@
           "UserListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UserListLambdaVersionl3ZkVR21smMVfHM5AA6bHpQz5VNV5YH32sl7S7ro"
+              "Ref": "UserListLambdaVersionkGnmTeTmpaKbqmvU7Yibamq0r6Ic7YjSoMypMqGnKQ"
             }
           },
           "UserGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UserGetLambdaVersionwUidjnNfuSlKT8hYhRg5Ev8zQBtkt2TLOl4V8R6BPuM"
-            }
-          },
-          "BookingListLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "BookingListLambdaVersiongPUlonFuyWc1R8iqqvX9AzjoIkD3IhIDa2onUqO0oGo"
-            }
-          },
-          "BidPutLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "BidPutLambdaVersionm2O76MKObLUA0cPsoadAjkqjx15htYiHHqbhbLs7LlU"
+              "Ref": "UserGetLambdaVersionhBowEWYgg7IC2vEtlW958ky9xKepwXFNW2INkIw7w8"
             }
           },
           "BookingGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BookingGetLambdaVersiongT5iRCeazZVppKDlOVn6zf9jfiBJEG9SAwgeyE2Jfw"
+              "Ref": "BookingGetLambdaVersionXYQwPOuVlKFIbDsMVN5dsPHTl8VZsihnYaPAk78"
             }
           },
           "BookingPutLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BookingPutLambdaVersionjVnzAkoceuDGhmH1Dg4W2tyB8gzdooHoYiAUkpQwS4"
+              "Ref": "BookingPutLambdaVersionibjI0tx1gySuV56tYXvZRNsSHMerJgxsrUkOUOoFts"
+            }
+          },
+          "BookingListLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BookingListLambdaVersionwSXemSA0UMV2ei2ahsNoMcmkLnFgFqkEXxme7PH5g"
+            }
+          },
+          "BidPutLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BidPutLambdaVersionEkNTI55FiOOGkwotne7lqBH7OTQBV1QjwdA7rnucx4"
             }
           },
           "BidGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidGetLambdaVersionnPk3lTTzKVQv8J4IpYOi0EVQAH4BKiGR1OIg3gsQcg"
+              "Ref": "BidGetLambdaVersionaNvKQGPU1Bl81pLa6G3ivTplODW1ZH7Tc6AQoaN9c"
             }
           },
           "BidListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidListLambdaVersionrmVkEuULfe1EmPYhXCKtXJ84k8Dznh6fDDekCbnoBY"
+              "Ref": "BidListLambdaVersion7MuZlK3WXQ6hyId5mVUWDRehNAN1J057gmrxX5u8"
             }
           },
           "UserPutLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UserPutLambdaVersion6DGDAWxvhLFyKQf0PrYvF54KPCcqumDn3yQgCj7g"
+              "Ref": "UserPutLambdaVersionteBEJz1aFwDu8cODfwKN9tlKQw9E7jsqprzosig3iQ"
             }
           },
           "ServiceEndpoint": {
@@ -1717,6 +1993,25 @@
             "http": {
               "path": "user",
               "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1727,7 +2022,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserPutLambdaVersion6DGDAWxvhLFyKQf0PrYvF54KPCcqumDn3yQgCj7g"
+        "versionLogicalId": "UserPutLambdaVersionteBEJz1aFwDu8cODfwKN9tlKQw9E7jsqprzosig3iQ"
       },
       "userGet": {
         "handler": "api/user.get",
@@ -1736,6 +2031,25 @@
             "http": {
               "path": "user/{email}",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1746,7 +2060,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserGetLambdaVersionwUidjnNfuSlKT8hYhRg5Ev8zQBtkt2TLOl4V8R6BPuM"
+        "versionLogicalId": "UserGetLambdaVersionhBowEWYgg7IC2vEtlW958ky9xKepwXFNW2INkIw7w8"
       },
       "userList": {
         "handler": "api/user.list",
@@ -1757,6 +2071,25 @@
             "http": {
               "path": "user",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1767,7 +2100,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserListLambdaVersionl3ZkVR21smMVfHM5AA6bHpQz5VNV5YH32sl7S7ro"
+        "versionLogicalId": "UserListLambdaVersionkGnmTeTmpaKbqmvU7Yibamq0r6Ic7YjSoMypMqGnKQ"
       },
       "bookingPut": {
         "handler": "api/booking.put",
@@ -1778,6 +2111,25 @@
             "http": {
               "path": "booking",
               "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1788,7 +2140,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingPutLambdaVersionjVnzAkoceuDGhmH1Dg4W2tyB8gzdooHoYiAUkpQwS4"
+        "versionLogicalId": "BookingPutLambdaVersionibjI0tx1gySuV56tYXvZRNsSHMerJgxsrUkOUOoFts"
       },
       "bookingGet": {
         "handler": "api/booking.get",
@@ -1797,6 +2149,25 @@
             "http": {
               "path": "booking/{bookingId}",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1807,7 +2178,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingGetLambdaVersiongT5iRCeazZVppKDlOVn6zf9jfiBJEG9SAwgeyE2Jfw"
+        "versionLogicalId": "BookingGetLambdaVersionXYQwPOuVlKFIbDsMVN5dsPHTl8VZsihnYaPAk78"
       },
       "bookingList": {
         "handler": "api/booking.list",
@@ -1818,6 +2189,25 @@
             "http": {
               "path": "booking",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1828,7 +2218,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingListLambdaVersiongPUlonFuyWc1R8iqqvX9AzjoIkD3IhIDa2onUqO0oGo"
+        "versionLogicalId": "BookingListLambdaVersionwSXemSA0UMV2ei2ahsNoMcmkLnFgFqkEXxme7PH5g"
       },
       "bidPut": {
         "handler": "api/bid.put",
@@ -1839,6 +2229,25 @@
             "http": {
               "path": "bid",
               "method": "post",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "POST"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1849,7 +2258,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidPutLambdaVersionm2O76MKObLUA0cPsoadAjkqjx15htYiHHqbhbLs7LlU"
+        "versionLogicalId": "BidPutLambdaVersionEkNTI55FiOOGkwotne7lqBH7OTQBV1QjwdA7rnucx4"
       },
       "bidGet": {
         "handler": "api/bid.get",
@@ -1858,6 +2267,25 @@
             "http": {
               "path": "bid/{bidId}",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1868,7 +2296,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidGetLambdaVersionnPk3lTTzKVQv8J4IpYOi0EVQAH4BKiGR1OIg3gsQcg"
+        "versionLogicalId": "BidGetLambdaVersionaNvKQGPU1Bl81pLa6G3ivTplODW1ZH7Tc6AQoaN9c"
       },
       "bidList": {
         "handler": "api/bid.list",
@@ -1879,6 +2307,25 @@
             "http": {
               "path": "bid",
               "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
               "integration": "AWS_PROXY"
             }
           }
@@ -1889,7 +2336,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidListLambdaVersionrmVkEuULfe1EmPYhXCKtXJ84k8Dznh6fDDekCbnoBY"
+        "versionLogicalId": "BidListLambdaVersion7MuZlK3WXQ6hyId5mVUWDRehNAN1J057gmrxX5u8"
       }
     },
     "resources": {
@@ -1917,7 +2364,7 @@
             "StreamSpecification": {
               "StreamViewType": "NEW_AND_OLD_IMAGES"
             },
-            "TableName": "wecabs-dev"
+            "TableName": "wecabs-dev-USER_TABLE"
           }
         },
         "BookingDynamoDbTable": {
@@ -1943,7 +2390,7 @@
             "StreamSpecification": {
               "StreamViewType": "NEW_AND_OLD_IMAGES"
             },
-            "TableName": "wecabs-dev"
+            "TableName": "wecabs-dev-BOOKING_TABLE"
           }
         },
         "BidDynamoDbTable": {
@@ -1969,7 +2416,7 @@
             "StreamSpecification": {
               "StreamViewType": "NEW_AND_OLD_IMAGES"
             },
-            "TableName": "wecabs-dev"
+            "TableName": "wecabs-dev-BID_TABLE"
           }
         }
       },
@@ -1997,7 +2444,7 @@
     "artifact": "/Users/arawat/WebstormProjects/we-cabs-back-end2/.serverless/wecabs.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/wecabs/dev/1613366265742-2021-02-15T05:17:45.742Z",
+    "artifactDirectoryName": "serverless/wecabs/dev/1613454595516-2021-02-16T05:49:55.516Z",
     "artifact": "wecabs.zip"
   }
 }
