@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "b60b74be-33a4-41fa-9707-93dfa01ce4d0",
+		"name": "wc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post new booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    \n    \"bookingId\": null,\n\n    \"pickupPoint\": \"Test114444\",\n    \"dropPoint\": \"testD\",\n    \"pickupTime\": 12,\n    \"carType\": \"testC\",\n    \"expiryTime\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/booking/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"carType\": \"testC\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sx2nff9zp7.execute-api.us-west-2.amazonaws.com/dev/booking/list",
+					"protocol": "https",
+					"host": [
+						"sx2nff9zp7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"booking",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    // mention bookingId to update existings\n    \"bookingId\":\"f8586350-742b-11eb-bfff-754c25e4c537\",\n\n\n    \"pickupPoint\": \"Test114444\",\n    \"dropPoint\": \"testD\",\n    \"pickupTime\": 12,\n    \"carType\": \"testC\",\n    \"expiryTime\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/booking",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bookings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"carType\": \"testC\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sx2nff9zp7.execute-api.us-west-2.amazonaws.com/dev/booking/list",
+					"protocol": "https",
+					"host": [
+						"sx2nff9zp7",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"booking",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"test\",\n    \"email\":\"test22@gmail.com\",\n    \"phone\":\"+91000000\",\n    \"password\":\"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/user/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post new bid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"linkedUserId\":\"test\",\n    \"linkedBookingId\":\"test\",\n    \"amount\":2222,\n    \"carPlate\":\"test\",\n    \"linkedUserRating\":0.2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/bid",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"bid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update bid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"bidId\": \"5db648f0-7438-11eb-aa8a-eb4549b9ba1d\",\n\n    \"linkedUserId\":\"test\",\n    \"linkedBookingId\":\"test\",\n    \"amount\":2222,\n    \"carPlate\":\"test\",\n    \"linkedUserRating\":0.2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/bid",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"bid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"bidId\": \"5db648f0-7438-11eb-aa8a-eb4549b9ba1d\",\n\n    \"linkedUserId\":\"test\",\n    \"linkedBookingId\":\"test\",\n    \"amount\":2222,\n    \"carPlate\":\"test\",\n    \"linkedUserRating\":0.2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dev/bid",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dev",
+						"bid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get bids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": " https://a46jrcmngi.execute-api.us-west-2.amazonaws.com"
+		}
+	]
+}

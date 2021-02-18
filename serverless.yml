@@ -50,7 +50,7 @@ functions:
     handler: api/user.get
     events:
       - http:
-          path: user/{email}
+          path: user/{phone}
           method: get
           cors: true
 
@@ -113,6 +113,13 @@ functions:
           path: bid/{bidId}
           method: get
           cors: true
+  bidGetByBooking:
+    handler: api/bid.getByBooking
+    events:
+      - http:
+          path: bid/booking/{bookingId}
+          method: get
+          cors: true
 
   bidList:
     handler: api/bid.list
@@ -132,11 +139,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: "email"
+            AttributeName: "phone"
             AttributeType: "S"
         KeySchema:
           -
-            AttributeName: "email"
+            AttributeName: "phone"
             KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
@@ -176,6 +183,17 @@ resources:
           -
             AttributeName: "bidId"
             KeyType: "HASH"
+#        GlobalSecondaryIndexes:
+#          - IndexName: BookingIdIndex
+#            KeySchema:
+#              - AttributeName: linkedBookingId
+#                KeyType: "HASH"
+#            Projection:
+#              ProjectionType: 'ALL'
+#            ProvisionedThroughput:
+#              ReadCapacityUnits: 1
+#              WriteCapacityUnits: 1
+
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1

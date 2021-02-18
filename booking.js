@@ -10,22 +10,23 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
    const requestBody = JSON.parse(event.body);
-
+   const bookingId=requestBody.bookingId || undefined
    const pickupPoint = requestBody.pickupPoint;
    const dropPoint = requestBody.dropPoint;
    const pickupTime = requestBody.pickupTime;
    const carType = requestBody.carType;
    const expiryTime = requestBody.expiryTime;
-   const distance = requestBody.distance;
-   const customerDetails = requestBody.customerDetails;
-   const allotedBid=requestBody.allotedBid
-   if (typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'string'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allotedBid !== 'string') {
+   const distance = requestBody.distance || 0;
+   const customerDetails = requestBody.customerDetails || {};
+   const allotedBid=requestBody.allotedBid || ''
+   const status=requestBody.status||''
+   if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allotedBid !== 'string') {
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit booking because of validation errors.'));
       return;
    }
 
-   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid))
+   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid,status,bookingId))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -34,7 +35,7 @@ module.exports.put = (event, context, callback) => {
 
              body: JSON.stringify({
                 message: `Successfully submitted booking`,
-                bidId: res.bidId
+                bookingId: res.bookingId
              })
           });
        })
@@ -60,10 +61,10 @@ const submitBooking = booking => {
        .then(res => booking);
 };
 
-const bookingInfo = ( pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid) => {
+const bookingInfo = ( pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid,status,bookingId) => {
    const timestamp = new Date().getTime();
    return {
-      id: uuid.v1(),
+      bookingId: bookingId||uuid.v1(),
       pickupPoint:pickupPoint,
       dropPoint:dropPoint,
       pickupTime:pickupTime,
@@ -74,10 +75,12 @@ const bookingInfo = ( pickupPoint, dropPoint, pickupTime, carType, expiryTime, d
       allotedBid:allotedBid,
       submittedAt: timestamp,
       updatedAt: timestamp,
+      status:status
    };
 };
 
 module.exports.list = (event, context, callback) => {
+
    var params = {
       TableName: process.env.BOOKING_TABLE,
       ProjectionExpression: "bookingId, pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid"

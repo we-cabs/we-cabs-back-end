@@ -10,18 +10,27 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
    const requestBody = JSON.parse(event.body);
-   const fullname = requestBody.fullname;
+   const name= requestBody.name
+   const profileImgUrl = requestBody.profileImgUrl || 'https://reqres.in/img/faces/4-image.jpg'
    const phone = requestBody.phone;
    const email = requestBody.email;
-   const password = requestBody.password;
+   const role = requestBody.role|| '';
+   const location = requestBody.location|| '';
+   const password = requestBody.password  || '';
+   const carsAvailable= requestBody.carsAvailable || 0;
+   const carsBooked= requestBody.carsBooked || 0;
+   const carsDetails= requestBody.carsDetails || {};
+   const bookingsCount=requestBody.bookingsCount || 0
+   const avgRating=requestBody.avgRating || 0
 
-   if (typeof fullname !== 'string' || typeof phone !== 'string' || typeof email !== 'string'|| typeof password !== 'string') {
+
+   if (typeof carsBooked !== 'number' ||typeof bookingsCount !== 'number' || typeof avgRating !== 'number' || typeof role !== 'string' || typeof location !== 'string' ||  typeof carsAvailable !== 'number' ||typeof carsDetails !== 'object' || typeof name !== 'string' ||typeof profileImgUrl !== 'string' || typeof phone !== 'string' || typeof email !== 'string'|| typeof password !== 'string') {
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit user because of validation errors.'));
       return;
    }
 
-   submitUser(userInfo(fullname, phone,email, password))
+   submitUser(userInfo(name,profileImgUrl ,phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -29,8 +38,8 @@ module.exports.put = (event, context, callback) => {
              },
 
              body: JSON.stringify({
-                message: `Successfully submitted user with email ${email}`,
-                userId: res.email
+                message: `Successfully submitted user with phone ${phone}`,
+                userId: res.phone
              })
           });
        })
@@ -56,23 +65,32 @@ const submitUser = user => {
        .then(res => user);
 };
 
-const userInfo = (fullname, phone,email, password) => {
+const userInfo = (name,profileImgUrl, phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked) => {
    const timestamp = new Date().getTime();
    return {
       // id: uuid.v1(),
-      fullname: fullname,
+      name:name,
+      profileImgUrl: profileImgUrl,
       email: email,
       phone: phone,
       password: password,
       submittedAt: timestamp,
       updatedAt: timestamp,
+      carsAvailable:carsAvailable,
+      carsBooked:carsBooked,
+      carsDetails:carsDetails,
+      role:role,
+      location:location,
+      bookingsCount:bookingsCount,
+      avgRating:avgRating
+
    };
 };
 
 module.exports.list = (event, context, callback) => {
    var params = {
       TableName: process.env.USER_TABLE,
-      ProjectionExpression: "fullname, email, phone, password"
+      // ProjectionExpression: "firstName,lastName,profileImgUrl, email, phone, password,carsAvailable,carsDetails,carsBooked"
    };
 
    console.log("Scanning User table.");
@@ -104,7 +122,7 @@ module.exports.get = (event, context, callback) => {
    const params = {
       TableName: process.env.USER_TABLE,
       Key: {
-         email: event.pathParameters.email,
+         phone: event.pathParameters.phone,
       },
    };
 

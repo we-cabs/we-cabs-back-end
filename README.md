@@ -3,14 +3,20 @@
 # DB:
 ### 1- USER
 
-      fullname 
+      name
+      profileImgUrl
       email 
       phone 
       carsBooked
       carsAvailable
       carsDetails
-      submittedAt 
+      submittedAt
+      password 
       updatedAt
+      role
+      location
+      bookingsCount
+      avgRating
             
 ### 2- BOOKING
         
@@ -23,30 +29,34 @@
       distance
       customerDetails
       allotedBid
+      status
       
 ### 3- BID
 
       bidId
       linkedUserId
+      linkedUserRating
       linkedBookingId
       amount
       carPlate
       submittedAt 
-      updatedAt   
+      updatedAt  
+      status 
   
 # Api:
 
 ## 1- user (db)
 ```
-POST USER
-GET USER
-LIST USER
+POST USER - post a new user
+GET USER - get details of a specific user
+LIST USER - list a user
 ```
 ## 2- booking (db)
 ```
-POST BOOKING
-GET BOOKING
-LIST BOOKING
+POST BOOKING - for posting booking details
+GET BOOKING - for getting details of a specific booking
+LIST BOOKING - list all bookings
+TODO:  - get list of a) all available bookings (can be filtered by time, location b) bookings of a particular 
 ```
 ## 3- bid (db)
 ```
@@ -54,54 +64,8 @@ POST BID
 GET BID
 LIST BID
 ```
-ENDPOINTS:
-```
-endpoints:
-  POST - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user/{email}
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
-  POST - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/booking
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/booking/{bookingId}
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/booking
-  POST - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/bid
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/bid/{bidId}
-  GET - https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/bid
-
-```
-
-# CURL:
-
-## 1- user (db)
-POST USER
-```
-curl -H "Content-Type: application/json" -X POST -d '{"fullname":"Test","email": "test@gmail.com", "password":"12", "phone":"1"}' https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
-```
-
-```
-{"message":"Successfully submitted user with email test@gmail.com","userId":"test@gmail.com"}sh-3.2# 
-```
-
-GET USER
-
-```
-curl https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user/test@gmail.com
-```
-
-```
-{"password":"12","email":"test@gmail.com","phone":"1","fullname":"Test","submittedAt":1613347705421,"updatedAt":1613347705421}sh-3.2# 
-```
-
-LIST USERS
-
-```
-curl https://yo499c2xab.execute-api.us-west-2.amazonaws.com/dev/user
-
-```
-
-```
-{"users":[{"password":"12","email":"t1est@gmail.com","fullname":"Test","phone":"1"},{"password":"12","email":"test@gmail.com","fullname":"Test","phone":"1"}]}
-```
-
+ 
+ 
 SERVERLESS DEPLOY
 ```
 serverless deploy

@@ -10,19 +10,21 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
    const requestBody = JSON.parse(event.body);
-
+   const bidId=requestBody.bidId||undefined
    const linkedUserId = requestBody.linkedUserId;
    const linkedBookingId = requestBody.linkedBookingId;
    const amount = requestBody.amount;
    const carPlate = requestBody.carPlate;
+   const linkedUserRating=requestBody.linkedUserRating;
+   const status=requestBody.status||'';
 
-   if (typeof linkedUserId !== 'string' || typeof linkedBookingId !== 'string' || typeof amount !== 'number'|| typeof carPlate !== 'string') {
+   if (typeof linkedUserRating !== 'number' ||typeof linkedUserId !== 'string' || typeof linkedBookingId !== 'string' || typeof amount !== 'number'|| typeof carPlate !== 'string') {
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit bid because of validation errors.'));
       return;
    }
 
-   submitBid(bidInfo(linkedUserId,linkedBookingId,amount,carPlate))
+   submitBid(bidInfo(linkedUserId,linkedBookingId,amount,carPlate,linkedUserRating,bidId,status))
        .then(res => {
           callback(null, {
              statusCode: 200,
@@ -58,23 +60,25 @@ const submitBid = bid => {
        .then(res => bid);
 };
 
-const bidInfo = (linkedUserId,linkedBookingId,amount,carPlate) => {
+const bidInfo = (linkedUserId,linkedBookingId,amount,carPlate,linkedUserRating,bidId,status) => {
    const timestamp = new Date().getTime();
    return {
-      bidId: uuid.v1(),
+      bidId: bidId || uuid.v1(),
       linkedUserId:linkedUserId,
       linkedBookingId:linkedBookingId,
       amount:amount,
       carPlate:carPlate,
       submittedAt: timestamp,
       updatedAt: timestamp,
+      linkedUserRating:linkedUserRating,
+      status:status
    };
 };
 
 module.exports.list = (event, context, callback) => {
    var params = {
       TableName: process.env.BID_TABLE,
-      ProjectionExpression: "bidId, linkedUserId,linkedBookingId,amount,carPlate"
+      ProjectionExpression: "bidId,linkedUserId,linkedBookingId,amount,carPlate"
    };
 
    console.log("Scanning Bid table.");
