@@ -25,11 +25,8 @@
       <change beforePath="$PROJECT_DIR$/.serverless/serverless-state.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/serverless-state.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/wecabs.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/wecabs.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bid.js" beforeDir="false" afterPath="$PROJECT_DIR$/bid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/booking.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/booking_api/booking" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/user_api/user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/wc.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverless.yml" beforeDir="false" afterPath="$PROJECT_DIR$/serverless.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/user.js" afterDir="false" />
     </list>
@@ -57,15 +54,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/samples/user_api" />
-      <recent name="$PROJECT_DIR$/samples/booking_api" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/samples" />
       <recent name="$PROJECT_DIR$/samples/booking_api" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/imgs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/samples/user_api" />
+      <recent name="$PROJECT_DIR$/samples/booking_api" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -82,7 +79,14 @@
       <workItem from="1613615337289" duration="3776000" />
       <workItem from="1613713429763" duration="686000" />
       <workItem from="1613715884595" duration="2757000" />
-      <workItem from="1613894911425" duration="13584000" />
+      <workItem from="1613894911425" duration="15501000" />
+      <workItem from="1614313649838" duration="467000" />
+      <workItem from="1614368558696" duration="7045000" />
+      <workItem from="1614457696985" duration="709000" />
+      <workItem from="1614488275297" duration="261000" />
+      <workItem from="1614616888072" duration="187000" />
+      <workItem from="1614914320597" duration="1820000" />
+      <workItem from="1615020708376" duration="1040000" />
     </task>
     <servers />
   </component>
@@ -111,16 +115,18 @@
     </state>
     <state width="500" height="441" key="SwitcherDM/0.23.1680.937@0.23.1680.937" timestamp="1613615369616" />
     <state width="500" height="445" key="SwitcherDM/0.23.1680.947@0.23.1680.947" timestamp="1613365000525" />
-    <state x="541" y="246" width="598" height="490" key="find.popup" timestamp="1613616256397">
-      <screen x="0" y="23" width="1680" height="937" />
+    <state x="541" y="248" width="598" height="494" key="find.popup" timestamp="1615020793160">
+      <screen x="0" y="23" width="1680" height="944" />
     </state>
     <state x="541" y="246" width="598" height="490" key="find.popup/0.23.1680.937@0.23.1680.937" timestamp="1613616256397" />
     <state x="541" y="247" width="598" height="493" key="find.popup/0.23.1680.941@0.23.1680.941" timestamp="1613455986511" />
+    <state x="541" y="248" width="598" height="494" key="find.popup/0.23.1680.944@0.23.1680.944" timestamp="1615020793160" />
     <state x="541" y="248" width="598" height="490" key="find.popup/0.23.1680.947@0.23.1680.947" timestamp="1613345215418" />
-    <state x="505" y="227" width="670" height="669" key="search.everywhere.popup" timestamp="1613616211886">
-      <screen x="0" y="23" width="1680" height="937" />
+    <state x="505" y="230" width="670" height="680" key="search.everywhere.popup" timestamp="1614377263984">
+      <screen x="0" y="23" width="1680" height="952" />
     </state>
     <state x="505" y="227" width="670" height="669" key="search.everywhere.popup/0.23.1680.937@0.23.1680.937" timestamp="1613616211886" />
     <state x="505" y="229" width="670" height="676" key="search.everywhere.popup/0.23.1680.947@0.23.1680.947" timestamp="1613410778486" />
+    <state x="505" y="230" width="670" height="680" key="search.everywhere.popup/1680.-244.3440.1417/0.23.1680.952@0.23.1680.952" timestamp="1614377263984" />
   </component>
 </project>

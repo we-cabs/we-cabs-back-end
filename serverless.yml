@@ -130,7 +130,15 @@ functions:
           path: bid
           method: get
           cors: true
-
+#plugins:
+#  - serverless-domain-manager
+#
+#custom:
+#  customDomain:
+#    domainName: 'api.mycompany.com' # Change this to your domain.
+#    basePath: 'users' # This will be prefixed to all routes
+#    stage: ${self:provider.stage}
+#    createRoute53Record: true
 resources:
   Resources:
     UserDynamoDbTable:

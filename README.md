@@ -17,6 +17,7 @@
       location
       bookingsCount
       avgRating
+      approvalStatus
             
 ### 2- BOOKING
         
