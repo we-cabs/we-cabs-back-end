@@ -83,7 +83,8 @@ const userInfo = (name,profileImgUrl, phone,email, password,carsAvailable,carsDe
       location:location,
       bookingsCount:bookingsCount,
       avgRating:avgRating,
-      approvalStatus:approvalStatus
+      approvalStatus:approvalStatus,
+      userId:phone
 
    };
 };

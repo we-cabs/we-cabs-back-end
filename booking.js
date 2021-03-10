@@ -18,15 +18,29 @@ module.exports.put = (event, context, callback) => {
    const expiryTime = requestBody.expiryTime;
    const distance = requestBody.distance || 0;
    const customerDetails = requestBody.customerDetails || {};
-   const allotedBid=requestBody.allotedBid || ''
-   const status=requestBody.status||''
+   const allottedBidId=requestBody.allottedBidId || '';
+   const status=requestBody.status||'';
+   const maxAmount=requestBody.maxAmount;
+   const reviewCollected=requestBody.reviewCollected||0;
+   const notes=requestBody.notes||'';
+   const companyReceivableAmount=requestBody.companyReceivableAmount||0;
+   const tripType=requestBody.tripType;
+   const location=requestBody.location;
+   const allottedUserId=requestBody.allottedUserId||'';
+
    if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allotedBid !== 'string') {
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit booking because of validation errors.'));
       return;
    }
 
-   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid,status,bookingId))
+   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,status,bookingId, maxAmount,
+   reviewCollected,
+       companyReceivableAmount,
+   notes,
+   tripType,
+   location,
+   allottedUserId))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -61,7 +75,13 @@ const submitBooking = booking => {
        .then(res => booking);
 };
 
-const bookingInfo = ( pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid,status,bookingId) => {
+const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails, allottedBidId, status, bookingId, maxAmount,
+                     reviewCollected,
+                     companyReceivableAmount,
+                     notes,
+                     tripType,
+                     location,
+                     allottedUserId) => {
    const timestamp = new Date().getTime();
    return {
       bookingId: bookingId||uuid.v1(),
@@ -72,10 +92,17 @@ const bookingInfo = ( pickupPoint, dropPoint, pickupTime, carType, expiryTime, d
       expiryTime:expiryTime,
       distance:distance,
       customerDetails:customerDetails,
-      allotedBid:allotedBid,
+      allottedBidId:allotedBid,
       submittedAt: timestamp,
       updatedAt: timestamp,
-      status:status
+      status:status,
+      reviewCollected:reviewCollected,
+      companyReceivableAmount:companyReceivableAmount,
+      notes:notes,
+      tripType:tripType,
+      location:location,
+      allottedUserId:allottedUserId,
+      maxAmount:maxAmount
    };
 };
 
@@ -83,7 +110,7 @@ module.exports.list = (event, context, callback) => {
 
    var params = {
       TableName: process.env.BOOKING_TABLE,
-      ProjectionExpression: "bookingId, pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allotedBid"
+      ProjectionExpression: "bookingId, pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,maxAmount,reviewCollected,companyReceivableAmount,notes,tripType,location,allottedUserId"
    };
 
    console.log("Scanning Bid table.");

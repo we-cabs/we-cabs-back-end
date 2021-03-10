@@ -110,7 +110,7 @@ module.exports.get = (event, context, callback) => {
    const params = {
       TableName: process.env.BID_TABLE,
       Key: {
-         id: event.pathParameters.id,
+         bidId: event.pathParameters.bidId,
       },
    };
 
@@ -122,6 +122,37 @@ module.exports.get = (event, context, callback) => {
              },
 
              body: JSON.stringify(result.Item),
+          };
+          callback(null, response);
+       })
+       .catch(error => {
+          console.error(error);
+          callback(new Error('Couldn\'t fetch bid.'));
+          return;
+       });
+};
+
+module.exports.listByBooking = (event, context, callback) => {
+   var params = {
+      TableName: process.env.BID_TABLE,
+      ProjectionExpression: "bidId,linkedUserId,linkedBookingId,amount,carPlate",
+      FilterExpression: '#linkedBookingId = :linkedBookingId',
+      ExpressionAttributeValues: {
+         ':linkedBookingId': event.bookingId
+      },
+   };
+
+   console.log("Scanning Bid table.");
+
+
+   dynamoDb.get(params).promise()
+       .then(result => {
+          const response = {
+             statusCode: 200,headers: {
+                "Access-Control-Allow-Origin": "*"
+             },
+
+             body: JSON.stringify(result),
           };
           callback(null, response);
        })

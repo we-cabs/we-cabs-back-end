@@ -25,8 +25,8 @@
       <change beforePath="$PROJECT_DIR$/.serverless/serverless-state.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/serverless-state.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/wecabs.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/wecabs.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bid.js" beforeDir="false" afterPath="$PROJECT_DIR$/bid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/booking.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverless.yml" beforeDir="false" afterPath="$PROJECT_DIR$/serverless.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/user.js" afterDir="false" />
     </list>
@@ -46,7 +46,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/samples" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -54,15 +54,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/samples" />
-      <recent name="$PROJECT_DIR$/samples/booking_api" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/imgs" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/samples/user_api" />
       <recent name="$PROJECT_DIR$/samples/booking_api" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/samples" />
+      <recent name="$PROJECT_DIR$/samples/booking_api" />
+      <recent name="$PROJECT_DIR$/imgs" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -86,7 +86,9 @@
       <workItem from="1614488275297" duration="261000" />
       <workItem from="1614616888072" duration="187000" />
       <workItem from="1614914320597" duration="1820000" />
-      <workItem from="1615020708376" duration="1040000" />
+      <workItem from="1615020708376" duration="3607000" />
+      <workItem from="1615254717927" duration="3686000" />
+      <workItem from="1615344289556" duration="1409000" />
     </task>
     <servers />
   </component>
@@ -110,10 +112,11 @@
       <screen x="0" y="23" width="1680" height="937" />
     </state>
     <state x="563" y="300" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.937@0.23.1680.937" timestamp="1613617641117" />
-    <state width="500" height="441" key="SwitcherDM" timestamp="1613615369616">
-      <screen x="0" y="23" width="1680" height="937" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1615257278171">
+      <screen x="0" y="23" width="1680" height="944" />
     </state>
     <state width="500" height="441" key="SwitcherDM/0.23.1680.937@0.23.1680.937" timestamp="1613615369616" />
+    <state width="500" height="445" key="SwitcherDM/0.23.1680.944@0.23.1680.944" timestamp="1615257278171" />
     <state width="500" height="445" key="SwitcherDM/0.23.1680.947@0.23.1680.947" timestamp="1613365000525" />
     <state x="541" y="248" width="598" height="494" key="find.popup" timestamp="1615020793160">
       <screen x="0" y="23" width="1680" height="944" />

@@ -24,7 +24,7 @@ provider:
     USER_TABLE: ${self:service}-${opt:stage, self:provider.stage}-USER_TABLE
     BOOKING_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BOOKING_TABLE
     BID_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BID_TABLE
-
+    CAR_TABLE:  ${self:service}-${opt:stage, self:provider.stage}-CAR_TABLE
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -113,8 +113,8 @@ functions:
           path: bid/{bidId}
           method: get
           cors: true
-  bidGetByBooking:
-    handler: api/bid.getByBooking
+  bidListByBooking:
+    handler: api/bid.listByBooking
     events:
       - http:
           path: bid/booking/{bookingId}
@@ -128,6 +128,43 @@ functions:
     events:
       - http:
           path: bid
+          method: get
+          cors: true
+
+  # car api functions
+
+  carPut:
+    handler: api/bid.put
+    memorySize: 128
+    description: put bid details
+    events:
+      - http:
+          path: car
+          method: post
+          cors: true
+
+  carGet:
+    handler: api/car.get
+    events:
+      - http:
+          path: car/{carPlate}
+          method: get
+          cors: true
+  carGetByPhone:
+    handler: api/bid.getByPhone
+    events:
+      - http:
+          path: car/phone/{phone}
+          method: get
+          cors: true
+
+  carList:
+    handler: api/car.list
+    memorySize: 128
+    description: list all cars details
+    events:
+      - http:
+          path: car
           method: get
           cors: true
 #plugins:
@@ -208,3 +245,23 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.BID_TABLE}
+
+    CarDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "carPlate"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "carPlate"
+            KeyType: "HASH"
+
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.CAR_TABLE}
