@@ -120,6 +120,12 @@
               "LogGroupName": "/aws/lambda/wecabs-dev-userList"
             }
           },
+          "UserListByLocationLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/wecabs-dev-userListByLocation"
+            }
+          },
           "BookingPutLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -138,6 +144,18 @@
               "LogGroupName": "/aws/lambda/wecabs-dev-bookingList"
             }
           },
+          "BookingListByUserIdLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/wecabs-dev-bookingListByUserId"
+            }
+          },
+          "BookingListByLocationLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/wecabs-dev-bookingListByLocation"
+            }
+          },
           "BidPutLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
@@ -150,10 +168,16 @@
               "LogGroupName": "/aws/lambda/wecabs-dev-bidGet"
             }
           },
-          "BidListByBookingLogGroup": {
+          "BidListByBookingIdLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/wecabs-dev-bidListByBooking"
+              "LogGroupName": "/aws/lambda/wecabs-dev-bidListByBookingId"
+            }
+          },
+          "BidListByUserIdLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/wecabs-dev-bidListByUserId"
             }
           },
           "BidListLogGroup": {
@@ -174,10 +198,10 @@
               "LogGroupName": "/aws/lambda/wecabs-dev-carGet"
             }
           },
-          "CarGetByPhoneLogGroup": {
+          "CarListByUserIdLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/wecabs-dev-carGetByPhone"
+              "LogGroupName": "/aws/lambda/wecabs-dev-carListByUserId"
             }
           },
           "CarListLogGroup": {
@@ -273,7 +297,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/user.put",
               "Runtime": "nodejs12.x",
@@ -307,7 +331,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/user.get",
               "Runtime": "nodejs12.x",
@@ -340,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/user.list",
               "Runtime": "nodejs12.x",
@@ -367,6 +391,39 @@
               "UserListLogGroup"
             ]
           },
+          "UserListByLocationLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+              },
+              "Handler": "api/user.listByLocation",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "wecabs-dev-userListByLocation",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE",
+                  "CAR_TABLE": "wecabs-dev-CAR_TABLE"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "UserListByLocationLogGroup"
+            ]
+          },
           "BookingPutLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -374,7 +431,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/booking.put",
               "Runtime": "nodejs12.x",
@@ -408,7 +465,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/booking.get",
               "Runtime": "nodejs12.x",
@@ -441,7 +498,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/booking.list",
               "Runtime": "nodejs12.x",
@@ -468,6 +525,72 @@
               "BookingListLogGroup"
             ]
           },
+          "BookingListByUserIdLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+              },
+              "Handler": "api/booking.listByUserId",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "wecabs-dev-bookingListByUserId",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE",
+                  "CAR_TABLE": "wecabs-dev-CAR_TABLE"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "BookingListByUserIdLogGroup"
+            ]
+          },
+          "BookingListByLocationLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+              },
+              "Handler": "api/booking.listByLocation",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "wecabs-dev-bookingListByLocation",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE",
+                  "CAR_TABLE": "wecabs-dev-CAR_TABLE"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "BookingListByLocationLogGroup"
+            ]
+          },
           "BidPutLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
@@ -475,7 +598,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/bid.put",
               "Runtime": "nodejs12.x",
@@ -509,13 +632,14 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/bid.get",
               "Runtime": "nodejs12.x",
               "FunctionName": "wecabs-dev-bidGet",
-              "MemorySize": 1024,
+              "MemorySize": 128,
               "Timeout": 6,
+              "Description": "get bid details",
               "Environment": {
                 "Variables": {
                   "USER_TABLE": "wecabs-dev-USER_TABLE",
@@ -535,18 +659,18 @@
               "BidGetLogGroup"
             ]
           },
-          "BidListByBookingLambdaFunction": {
+          "BidListByBookingIdLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
-              "Handler": "api/bid.listByBooking",
+              "Handler": "api/bid.listByBookingId",
               "Runtime": "nodejs12.x",
-              "FunctionName": "wecabs-dev-bidListByBooking",
+              "FunctionName": "wecabs-dev-bidListByBookingId",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
@@ -565,7 +689,40 @@
               }
             },
             "DependsOn": [
-              "BidListByBookingLogGroup"
+              "BidListByBookingIdLogGroup"
+            ]
+          },
+          "BidListByUserIdLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+              },
+              "Handler": "api/bid.listByUserId",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "wecabs-dev-bidListByUserId",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USER_TABLE": "wecabs-dev-USER_TABLE",
+                  "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+                  "BID_TABLE": "wecabs-dev-BID_TABLE",
+                  "CAR_TABLE": "wecabs-dev-CAR_TABLE"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "BidListByUserIdLogGroup"
             ]
           },
           "BidListLambdaFunction": {
@@ -575,7 +732,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/bid.list",
               "Runtime": "nodejs12.x",
@@ -609,14 +766,14 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
-              "Handler": "api/bid.put",
+              "Handler": "api/car.put",
               "Runtime": "nodejs12.x",
               "FunctionName": "wecabs-dev-carPut",
               "MemorySize": 128,
               "Timeout": 6,
-              "Description": "put bid details",
+              "Description": "put car details",
               "Environment": {
                 "Variables": {
                   "USER_TABLE": "wecabs-dev-USER_TABLE",
@@ -643,7 +800,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/car.get",
               "Runtime": "nodejs12.x",
@@ -669,18 +826,18 @@
               "CarGetLogGroup"
             ]
           },
-          "CarGetByPhoneLambdaFunction": {
+          "CarListByUserIdLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
-              "Handler": "api/bid.getByPhone",
+              "Handler": "api/car.listByUserId",
               "Runtime": "nodejs12.x",
-              "FunctionName": "wecabs-dev-carGetByPhone",
+              "FunctionName": "wecabs-dev-carListByUserId",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
@@ -699,7 +856,7 @@
               }
             },
             "DependsOn": [
-              "CarGetByPhoneLogGroup"
+              "CarListByUserIdLogGroup"
             ]
           },
           "CarListLambdaFunction": {
@@ -709,7 +866,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z/wecabs.zip"
+                "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
               },
               "Handler": "api/car.list",
               "Runtime": "nodejs12.x",
@@ -736,152 +893,193 @@
               "CarListLogGroup"
             ]
           },
-          "UserGetLambdaVersionbJsp35bhQLBctKn0aJjxyqD3OKWfRW3AlpW3WSAH0": {
+          "UserGetLambdaVersionVzDoyKl5R6Jkjb2Yk1TW3FOMG7z0aQx6hShFIFT4o": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UserGetLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
             }
           },
-          "BookingPutLambdaVersionhcBAIfT6lKOmrXOmExJ5qniLghDvvmjy7FjLuAqg": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "BookingPutLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
-              "Description": "put booking details"
-            }
-          },
-          "UserListLambdaVersioncoJDvD1fOljVTmZcQvr2OYw8oYSp8hhXbans3sdvY": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "UserListLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
-              "Description": "list all users details"
-            }
-          },
-          "BookingGetLambdaVersionZoYQYmU2fgBbuM7jqBQs8Kohfnm25f1kLTdnhtrVcs": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "BookingGetLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
-            }
-          },
-          "UserPutLambdaVersionbXKDu73mfceNpD6P33h6a1HLvROhHHyJeoq0oxm34": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "UserPutLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
-              "Description": "put user details"
-            }
-          },
-          "BookingListLambdaVersiontta2tJnXDvMQIZK4yyGVLiyRICZDgzb2FcXfmVQaY": {
+          "BookingListLambdaVersiontuK4om1D2DT1sZZ2IngU9588DJvlrrUojJgqGyls4o": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BookingListLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
               "Description": "list all bookings details"
             }
           },
-          "BidGetLambdaVersionCnJ3ZugpqArT8K2jTIUq8dnwdSKHz6Xc66eeFyu66Q": {
+          "BookingGetLambdaVersionwyu9lGLhtVU26X06WtKNtBgdFN6krqPoruQUlndTGI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "BidGetLambdaFunction"
+                "Ref": "BookingGetLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
             }
           },
-          "BidPutLambdaVersionECvo98Fh1skR7iV4uj8KOtY5L2nhQv3QSl603RKqY": {
+          "BookingListByLocationLambdaVersionS3bCxbmiicduBk42VJPByZRzNdMXpfcWzAtGNxzY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "BidPutLambdaFunction"
+                "Ref": "BookingListByLocationLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
-              "Description": "put bid details"
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
             }
           },
-          "BidListByBookingLambdaVersionYQ6r9nMB3znwWBuEPqBgUDZK5ThEObNR2iWldOB1OA": {
+          "BookingPutLambdaVersionJMXCkbp6xm61HJ2x1tddJDedzCKuvHdd5Z3c77ods": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "BidListByBookingLambdaFunction"
+                "Ref": "BookingPutLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "put booking details"
             }
           },
-          "CarGetLambdaVersionCAQxBBPbi3kA4eomd8t59adw3g53Ish9MkiB8uzpA": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CarGetLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
-            }
-          },
-          "CarPutLambdaVersiong1L3zhfLqp4ZKeMmpIuxj8p8FECF8rJj2L8FidEY4": {
+          "CarPutLambdaVersionTkZqP2Q1d7ikFcx3n1zqqGucMl1DwRA0t6a9Pk0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CarPutLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
-              "Description": "put bid details"
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "put car details"
             }
           },
-          "BidListLambdaVersionbCRD9UdhZxZ7dFjmlf5MIHlfq5VNCvRYHxlpgrBM3e4": {
+          "CarGetLambdaVersionA4ybE84PllStKw1RgnD9OnDWMRbXf6Jx6wCeWiHtv60": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CarGetLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "CarListByUserIdLambdaVersion1c5ss7Ek1mbuWkopyVokL8mealMKkbkoeLDsraRhMj4": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CarListByUserIdLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "BidListByUserIdLambdaVersionlWIG1Ek5zaxcRuvm8ONxYqyodAxmM6m5PNhpaEPWQ": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BidListByUserIdLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "UserListLambdaVersionPEEv3M5JrPrKF8XLdCDmgLrvHI3HpiFqAMotiilH8": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UserListLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "list all users details"
+            }
+          },
+          "BidListLambdaVersionp809CV1bYu2Ig8RgVz1Em5eG5YAr77igzM0cyUbViI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BidListLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
               "Description": "list all bids details"
             }
           },
-          "CarListLambdaVersionrNwFn72KQrcteLxS25tiU04bCEhvYM7LSGlCYuK4S0": {
+          "UserListByLocationLambdaVersionlWilcAqKsRyR1bnScWvULIK3NzXhY4eXXRhwr7mH68c": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UserListByLocationLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "UserPutLambdaVersionVG9kZa6eJt8CKMj7bdWuv49JqHDVAi2rclkeQGBf2A": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "UserPutLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "put user details"
+            }
+          },
+          "BidPutLambdaVersion9p0m7fuQUHEbLVzmebywz8aF2uZXRxRUD8ofclOhe8s": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BidPutLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "put bid details"
+            }
+          },
+          "BidGetLambdaVersionJ2qOw79efFY2scKYkifUSqZJmwIRSf8XLSFeKDWk": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BidGetLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+              "Description": "get bid details"
+            }
+          },
+          "BidListByBookingIdLambdaVersion6jM6s0hEgC5ScWMhkwnH4091ITOK3hmYDDdW7yjQyw": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BidListByBookingIdLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "BookingListByUserIdLambdaVersionrxWRqXbrySfwgSOc5xpMbH29GMHGvyylWc54iaDoVU": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BookingListByUserIdLambdaFunction"
+              },
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+            }
+          },
+          "CarListLambdaVersion06hpQG9L1b9QcmGgPzuvrhV9AHsR2Hh1WDigaXQrEI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CarListLambdaFunction"
               },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM=",
+              "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
               "Description": "list all cars details"
-            }
-          },
-          "CarGetByPhoneLambdaVersionGAnS1m3XTpHpuv7ptsKDm0JWdQVwFxe6y2wzKzThfo8": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CarGetByPhoneLambdaFunction"
-              },
-              "CodeSha256": "fNXieuTqJ/lxAsc07+AeZssLcBHWCmxjtR70MWZILiM="
             }
           },
           "ApiGatewayRestApi": {
@@ -923,6 +1121,30 @@
               }
             }
           },
+          "ApiGatewayResourceUserLocation": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceUser"
+              },
+              "PathPart": "location",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceUserLocationLocationVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceUserLocation"
+              },
+              "PathPart": "{location}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayResourceBooking": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -945,6 +1167,54 @@
                 "Ref": "ApiGatewayResourceBooking"
               },
               "PathPart": "{bookingId}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBookingUserid": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBooking"
+              },
+              "PathPart": "userId",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBookingUseridUseridVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBookingUserid"
+              },
+              "PathPart": "{userId}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBookingLocation": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBooking"
+              },
+              "PathPart": "location",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBookingLocationLocationVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBookingLocation"
+              },
+              "PathPart": "{location}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -977,25 +1247,49 @@
               }
             }
           },
-          "ApiGatewayResourceBidBooking": {
+          "ApiGatewayResourceBidBookingid": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
                 "Ref": "ApiGatewayResourceBid"
               },
-              "PathPart": "booking",
+              "PathPart": "bookingId",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourceBidBookingBookingidVar": {
+          "ApiGatewayResourceBidBookingidBookingidVar": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourceBidBooking"
+                "Ref": "ApiGatewayResourceBidBookingid"
               },
               "PathPart": "{bookingId}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBidUserid": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBid"
+              },
+              "PathPart": "userId",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBidUseridUseridVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBidUserid"
+              },
+              "PathPart": "{userId}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -1028,25 +1322,25 @@
               }
             }
           },
-          "ApiGatewayResourceCarPhone": {
+          "ApiGatewayResourceCarUserid": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
                 "Ref": "ApiGatewayResourceCar"
               },
-              "PathPart": "phone",
+              "PathPart": "userId",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourceCarPhonePhoneVar": {
+          "ApiGatewayResourceCarUseridUseridVar": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourceCarPhone"
+                "Ref": "ApiGatewayResourceCarUserid"
               },
-              "PathPart": "{phone}",
+              "PathPart": "{userId}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -1136,6 +1430,51 @@
               },
               "ResourceId": {
                 "Ref": "ApiGatewayResourceUserPhoneVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodUserLocationLocationVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUserLocationLocationVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1232,6 +1571,96 @@
               }
             }
           },
+          "ApiGatewayMethodBookingUseridUseridVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookingUseridUseridVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBookingLocationLocationVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookingLocationLocationVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayMethodBidOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -1322,7 +1751,7 @@
               }
             }
           },
-          "ApiGatewayMethodBidBookingBookingidVarOptions": {
+          "ApiGatewayMethodBidBookingidBookingidVarOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -1360,7 +1789,52 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBidBookingBookingidVar"
+                "Ref": "ApiGatewayResourceBidBookingidBookingidVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodBidUseridUseridVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBidUseridUseridVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1457,7 +1931,7 @@
               }
             }
           },
-          "ApiGatewayMethodCarPhonePhoneVarOptions": {
+          "ApiGatewayMethodCarUseridUseridVarOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -1495,7 +1969,7 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCarPhonePhoneVar"
+                "Ref": "ApiGatewayResourceCarUseridUseridVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1620,6 +2094,49 @@
                       {
                         "Fn::GetAtt": [
                           "UserListLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodUserLocationLocationVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceUserLocationLocationVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "UserListByLocationLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -1760,6 +2277,92 @@
               "MethodResponses": []
             }
           },
+          "ApiGatewayMethodBookingUseridUseridVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookingUseridUseridVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "BookingListByUserIdLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodBookingLocationLocationVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBookingLocationLocationVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "BookingListByLocationLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
           "ApiGatewayMethodBidPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -1846,13 +2449,13 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodBidBookingBookingidVarGet": {
+          "ApiGatewayMethodBidBookingidBookingidVarGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBidBookingBookingidVar"
+                "Ref": "ApiGatewayResourceBidBookingidBookingidVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -1877,7 +2480,50 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "BidListByBookingLambdaFunction",
+                          "BidListByBookingIdLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodBidUseridUseridVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceBidUseridUseridVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "BidListByUserIdLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -2018,13 +2664,13 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodCarPhonePhoneVarGet": {
+          "ApiGatewayMethodCarUseridUseridVarGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCarPhonePhoneVar"
+                "Ref": "ApiGatewayResourceCarUseridUseridVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -2049,7 +2695,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "CarGetByPhoneLambdaFunction",
+                          "CarListByUserIdLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -2104,7 +2750,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1615345494825": {
+          "ApiGatewayDeployment1615776124437": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2115,27 +2761,35 @@
             "DependsOn": [
               "ApiGatewayMethodUserOptions",
               "ApiGatewayMethodUserPhoneVarOptions",
+              "ApiGatewayMethodUserLocationLocationVarOptions",
               "ApiGatewayMethodBookingOptions",
               "ApiGatewayMethodBookingBookingidVarOptions",
+              "ApiGatewayMethodBookingUseridUseridVarOptions",
+              "ApiGatewayMethodBookingLocationLocationVarOptions",
               "ApiGatewayMethodBidOptions",
               "ApiGatewayMethodBidBididVarOptions",
-              "ApiGatewayMethodBidBookingBookingidVarOptions",
+              "ApiGatewayMethodBidBookingidBookingidVarOptions",
+              "ApiGatewayMethodBidUseridUseridVarOptions",
               "ApiGatewayMethodCarOptions",
               "ApiGatewayMethodCarCarplateVarOptions",
-              "ApiGatewayMethodCarPhonePhoneVarOptions",
+              "ApiGatewayMethodCarUseridUseridVarOptions",
               "ApiGatewayMethodUserPost",
               "ApiGatewayMethodUserPhoneVarGet",
               "ApiGatewayMethodUserGet",
+              "ApiGatewayMethodUserLocationLocationVarGet",
               "ApiGatewayMethodBookingPost",
               "ApiGatewayMethodBookingBookingidVarGet",
               "ApiGatewayMethodBookingGet",
+              "ApiGatewayMethodBookingUseridUseridVarGet",
+              "ApiGatewayMethodBookingLocationLocationVarGet",
               "ApiGatewayMethodBidPost",
               "ApiGatewayMethodBidBididVarGet",
-              "ApiGatewayMethodBidBookingBookingidVarGet",
+              "ApiGatewayMethodBidBookingidBookingidVarGet",
+              "ApiGatewayMethodBidUseridUseridVarGet",
               "ApiGatewayMethodBidGet",
               "ApiGatewayMethodCarPost",
               "ApiGatewayMethodCarCarplateVarGet",
-              "ApiGatewayMethodCarPhonePhoneVarGet",
+              "ApiGatewayMethodCarUseridUseridVarGet",
               "ApiGatewayMethodCarGet"
             ]
           },
@@ -2219,6 +2873,43 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "UserListLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "UserListByLocationLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "UserListByLocationLambdaFunction",
                   "Arn"
                 ]
               },
@@ -2361,6 +3052,80 @@
               }
             }
           },
+          "BookingListByUserIdLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "BookingListByUserIdLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "BookingListByLocationLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "BookingListByLocationLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
           "BidPutLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
@@ -2435,12 +3200,49 @@
               }
             }
           },
-          "BidListByBookingLambdaPermissionApiGateway": {
+          "BidListByBookingIdLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "BidListByBookingLambdaFunction",
+                  "BidListByBookingIdLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "BidListByUserIdLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "BidListByUserIdLambdaFunction",
                   "Arn"
                 ]
               },
@@ -2583,12 +3385,12 @@
               }
             }
           },
-          "CarGetByPhoneLambdaPermissionApiGateway": {
+          "CarListByUserIdLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "CarGetByPhoneLambdaFunction",
+                  "CarListByUserIdLambdaFunction",
                   "Arn"
                 ]
               },
@@ -2771,85 +3573,109 @@
           "UserGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UserGetLambdaVersionbJsp35bhQLBctKn0aJjxyqD3OKWfRW3AlpW3WSAH0"
-            }
-          },
-          "BookingPutLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "BookingPutLambdaVersionhcBAIfT6lKOmrXOmExJ5qniLghDvvmjy7FjLuAqg"
-            }
-          },
-          "UserListLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "UserListLambdaVersioncoJDvD1fOljVTmZcQvr2OYw8oYSp8hhXbans3sdvY"
-            }
-          },
-          "BookingGetLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "BookingGetLambdaVersionZoYQYmU2fgBbuM7jqBQs8Kohfnm25f1kLTdnhtrVcs"
-            }
-          },
-          "UserPutLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "UserPutLambdaVersionbXKDu73mfceNpD6P33h6a1HLvROhHHyJeoq0oxm34"
+              "Ref": "UserGetLambdaVersionVzDoyKl5R6Jkjb2Yk1TW3FOMG7z0aQx6hShFIFT4o"
             }
           },
           "BookingListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BookingListLambdaVersiontta2tJnXDvMQIZK4yyGVLiyRICZDgzb2FcXfmVQaY"
+              "Ref": "BookingListLambdaVersiontuK4om1D2DT1sZZ2IngU9588DJvlrrUojJgqGyls4o"
             }
           },
-          "BidGetLambdaFunctionQualifiedArn": {
+          "BookingGetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidGetLambdaVersionCnJ3ZugpqArT8K2jTIUq8dnwdSKHz6Xc66eeFyu66Q"
+              "Ref": "BookingGetLambdaVersionwyu9lGLhtVU26X06WtKNtBgdFN6krqPoruQUlndTGI"
             }
           },
-          "BidPutLambdaFunctionQualifiedArn": {
+          "BookingListByLocationLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidPutLambdaVersionECvo98Fh1skR7iV4uj8KOtY5L2nhQv3QSl603RKqY"
+              "Ref": "BookingListByLocationLambdaVersionS3bCxbmiicduBk42VJPByZRzNdMXpfcWzAtGNxzY"
             }
           },
-          "BidListByBookingLambdaFunctionQualifiedArn": {
+          "BookingPutLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidListByBookingLambdaVersionYQ6r9nMB3znwWBuEPqBgUDZK5ThEObNR2iWldOB1OA"
-            }
-          },
-          "CarGetLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CarGetLambdaVersionCAQxBBPbi3kA4eomd8t59adw3g53Ish9MkiB8uzpA"
+              "Ref": "BookingPutLambdaVersionJMXCkbp6xm61HJ2x1tddJDedzCKuvHdd5Z3c77ods"
             }
           },
           "CarPutLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CarPutLambdaVersiong1L3zhfLqp4ZKeMmpIuxj8p8FECF8rJj2L8FidEY4"
+              "Ref": "CarPutLambdaVersionTkZqP2Q1d7ikFcx3n1zqqGucMl1DwRA0t6a9Pk0"
+            }
+          },
+          "CarGetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CarGetLambdaVersionA4ybE84PllStKw1RgnD9OnDWMRbXf6Jx6wCeWiHtv60"
+            }
+          },
+          "CarListByUserIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CarListByUserIdLambdaVersion1c5ss7Ek1mbuWkopyVokL8mealMKkbkoeLDsraRhMj4"
+            }
+          },
+          "BidListByUserIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BidListByUserIdLambdaVersionlWIG1Ek5zaxcRuvm8ONxYqyodAxmM6m5PNhpaEPWQ"
+            }
+          },
+          "UserListLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UserListLambdaVersionPEEv3M5JrPrKF8XLdCDmgLrvHI3HpiFqAMotiilH8"
             }
           },
           "BidListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BidListLambdaVersionbCRD9UdhZxZ7dFjmlf5MIHlfq5VNCvRYHxlpgrBM3e4"
+              "Ref": "BidListLambdaVersionp809CV1bYu2Ig8RgVz1Em5eG5YAr77igzM0cyUbViI"
+            }
+          },
+          "UserListByLocationLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UserListByLocationLambdaVersionlWilcAqKsRyR1bnScWvULIK3NzXhY4eXXRhwr7mH68c"
+            }
+          },
+          "UserPutLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "UserPutLambdaVersionVG9kZa6eJt8CKMj7bdWuv49JqHDVAi2rclkeQGBf2A"
+            }
+          },
+          "BidPutLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BidPutLambdaVersion9p0m7fuQUHEbLVzmebywz8aF2uZXRxRUD8ofclOhe8s"
+            }
+          },
+          "BidGetLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BidGetLambdaVersionJ2qOw79efFY2scKYkifUSqZJmwIRSf8XLSFeKDWk"
+            }
+          },
+          "BidListByBookingIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BidListByBookingIdLambdaVersion6jM6s0hEgC5ScWMhkwnH4091ITOK3hmYDDdW7yjQyw"
+            }
+          },
+          "BookingListByUserIdLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BookingListByUserIdLambdaVersionrxWRqXbrySfwgSOc5xpMbH29GMHGvyylWc54iaDoVU"
             }
           },
           "CarListLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CarListLambdaVersionrNwFn72KQrcteLxS25tiU04bCEhvYM7LSGlCYuK4S0"
-            }
-          },
-          "CarGetByPhoneLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CarGetByPhoneLambdaVersionGAnS1m3XTpHpuv7ptsKDm0JWdQVwFxe6y2wzKzThfo8"
+              "Ref": "CarListLambdaVersion06hpQG9L1b9QcmGgPzuvrhV9AHsR2Hh1WDigaXQrEI"
             }
           },
           "ServiceEndpoint": {
@@ -3001,7 +3827,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserPutLambdaVersionbXKDu73mfceNpD6P33h6a1HLvROhHHyJeoq0oxm34"
+        "versionLogicalId": "UserPutLambdaVersionVG9kZa6eJt8CKMj7bdWuv49JqHDVAi2rclkeQGBf2A"
       },
       "userGet": {
         "handler": "api/user.get",
@@ -3039,7 +3865,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserGetLambdaVersionbJsp35bhQLBctKn0aJjxyqD3OKWfRW3AlpW3WSAH0"
+        "versionLogicalId": "UserGetLambdaVersionVzDoyKl5R6Jkjb2Yk1TW3FOMG7z0aQx6hShFIFT4o"
       },
       "userList": {
         "handler": "api/user.list",
@@ -3079,7 +3905,45 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "UserListLambdaVersioncoJDvD1fOljVTmZcQvr2OYw8oYSp8hhXbans3sdvY"
+        "versionLogicalId": "UserListLambdaVersionPEEv3M5JrPrKF8XLdCDmgLrvHI3HpiFqAMotiilH8"
+      },
+      "userListByLocation": {
+        "handler": "api/user.listByLocation",
+        "events": [
+          {
+            "http": {
+              "path": "user/location/{location}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "wecabs-dev-userListByLocation",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "UserListByLocationLambdaVersionlWilcAqKsRyR1bnScWvULIK3NzXhY4eXXRhwr7mH68c"
       },
       "bookingPut": {
         "handler": "api/booking.put",
@@ -3119,7 +3983,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingPutLambdaVersionhcBAIfT6lKOmrXOmExJ5qniLghDvvmjy7FjLuAqg"
+        "versionLogicalId": "BookingPutLambdaVersionJMXCkbp6xm61HJ2x1tddJDedzCKuvHdd5Z3c77ods"
       },
       "bookingGet": {
         "handler": "api/booking.get",
@@ -3157,7 +4021,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingGetLambdaVersionZoYQYmU2fgBbuM7jqBQs8Kohfnm25f1kLTdnhtrVcs"
+        "versionLogicalId": "BookingGetLambdaVersionwyu9lGLhtVU26X06WtKNtBgdFN6krqPoruQUlndTGI"
       },
       "bookingList": {
         "handler": "api/booking.list",
@@ -3197,7 +4061,83 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BookingListLambdaVersiontta2tJnXDvMQIZK4yyGVLiyRICZDgzb2FcXfmVQaY"
+        "versionLogicalId": "BookingListLambdaVersiontuK4om1D2DT1sZZ2IngU9588DJvlrrUojJgqGyls4o"
+      },
+      "bookingListByUserId": {
+        "handler": "api/booking.listByUserId",
+        "events": [
+          {
+            "http": {
+              "path": "booking/userId/{userId}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "wecabs-dev-bookingListByUserId",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "BookingListByUserIdLambdaVersionrxWRqXbrySfwgSOc5xpMbH29GMHGvyylWc54iaDoVU"
+      },
+      "bookingListByLocation": {
+        "handler": "api/booking.listByLocation",
+        "events": [
+          {
+            "http": {
+              "path": "booking/location/{location}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "wecabs-dev-bookingListByLocation",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "BookingListByLocationLambdaVersionS3bCxbmiicduBk42VJPByZRzNdMXpfcWzAtGNxzY"
       },
       "bidPut": {
         "handler": "api/bid.put",
@@ -3237,10 +4177,12 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidPutLambdaVersionECvo98Fh1skR7iV4uj8KOtY5L2nhQv3QSl603RKqY"
+        "versionLogicalId": "BidPutLambdaVersion9p0m7fuQUHEbLVzmebywz8aF2uZXRxRUD8ofclOhe8s"
       },
       "bidGet": {
         "handler": "api/bid.get",
+        "memorySize": 128,
+        "description": "get bid details",
         "events": [
           {
             "http": {
@@ -3271,18 +4213,18 @@
         ],
         "name": "wecabs-dev-bidGet",
         "package": {},
-        "memory": 1024,
+        "memory": 128,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidGetLambdaVersionCnJ3ZugpqArT8K2jTIUq8dnwdSKHz6Xc66eeFyu66Q"
+        "versionLogicalId": "BidGetLambdaVersionJ2qOw79efFY2scKYkifUSqZJmwIRSf8XLSFeKDWk"
       },
-      "bidListByBooking": {
-        "handler": "api/bid.listByBooking",
+      "bidListByBookingId": {
+        "handler": "api/bid.listByBookingId",
         "events": [
           {
             "http": {
-              "path": "bid/booking/{bookingId}",
+              "path": "bid/bookingId/{bookingId}",
               "method": "get",
               "cors": {
                 "origins": [
@@ -3307,13 +4249,51 @@
             }
           }
         ],
-        "name": "wecabs-dev-bidListByBooking",
+        "name": "wecabs-dev-bidListByBookingId",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidListByBookingLambdaVersionYQ6r9nMB3znwWBuEPqBgUDZK5ThEObNR2iWldOB1OA"
+        "versionLogicalId": "BidListByBookingIdLambdaVersion6jM6s0hEgC5ScWMhkwnH4091ITOK3hmYDDdW7yjQyw"
+      },
+      "bidListByUserId": {
+        "handler": "api/bid.listByUserId",
+        "events": [
+          {
+            "http": {
+              "path": "bid/userId/{userId}",
+              "method": "get",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "GET"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "wecabs-dev-bidListByUserId",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "BidListByUserIdLambdaVersionlWIG1Ek5zaxcRuvm8ONxYqyodAxmM6m5PNhpaEPWQ"
       },
       "bidList": {
         "handler": "api/bid.list",
@@ -3353,12 +4333,12 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "BidListLambdaVersionbCRD9UdhZxZ7dFjmlf5MIHlfq5VNCvRYHxlpgrBM3e4"
+        "versionLogicalId": "BidListLambdaVersionp809CV1bYu2Ig8RgVz1Em5eG5YAr77igzM0cyUbViI"
       },
       "carPut": {
-        "handler": "api/bid.put",
+        "handler": "api/car.put",
         "memorySize": 128,
-        "description": "put bid details",
+        "description": "put car details",
         "events": [
           {
             "http": {
@@ -3393,7 +4373,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CarPutLambdaVersiong1L3zhfLqp4ZKeMmpIuxj8p8FECF8rJj2L8FidEY4"
+        "versionLogicalId": "CarPutLambdaVersionTkZqP2Q1d7ikFcx3n1zqqGucMl1DwRA0t6a9Pk0"
       },
       "carGet": {
         "handler": "api/car.get",
@@ -3431,14 +4411,14 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CarGetLambdaVersionCAQxBBPbi3kA4eomd8t59adw3g53Ish9MkiB8uzpA"
+        "versionLogicalId": "CarGetLambdaVersionA4ybE84PllStKw1RgnD9OnDWMRbXf6Jx6wCeWiHtv60"
       },
-      "carGetByPhone": {
-        "handler": "api/bid.getByPhone",
+      "carListByUserId": {
+        "handler": "api/car.listByUserId",
         "events": [
           {
             "http": {
-              "path": "car/phone/{phone}",
+              "path": "car/userId/{userId}",
               "method": "get",
               "cors": {
                 "origins": [
@@ -3463,13 +4443,13 @@
             }
           }
         ],
-        "name": "wecabs-dev-carGetByPhone",
+        "name": "wecabs-dev-carListByUserId",
         "package": {},
         "memory": 1024,
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CarGetByPhoneLambdaVersionGAnS1m3XTpHpuv7ptsKDm0JWdQVwFxe6y2wzKzThfo8"
+        "versionLogicalId": "CarListByUserIdLambdaVersion1c5ss7Ek1mbuWkopyVokL8mealMKkbkoeLDsraRhMj4"
       },
       "carList": {
         "handler": "api/car.list",
@@ -3509,7 +4489,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "CarListLambdaVersionrNwFn72KQrcteLxS25tiU04bCEhvYM7LSGlCYuK4S0"
+        "versionLogicalId": "CarListLambdaVersion06hpQG9L1b9QcmGgPzuvrhV9AHsR2Hh1WDigaXQrEI"
       }
     },
     "resources": {
@@ -3643,7 +4623,7 @@
     "artifact": "/Users/arawat/WebstormProjects/we-cabs-back-end2/.serverless/wecabs.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/wecabs/dev/1615345498605-2021-03-10T03:04:58.605Z",
+    "artifactDirectoryName": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z",
     "artifact": "wecabs.zip"
   }
 }

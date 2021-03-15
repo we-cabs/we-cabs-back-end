@@ -63,7 +63,13 @@ functions:
           path: user
           method: get
           cors: true
-
+  userListByLocation:
+    handler: api/user.listByLocation
+    events:
+      - http:
+          path: user/location/{location}
+          method: get
+          cors: true
   # booking api functions
 
   bookingPut:
@@ -94,6 +100,20 @@ functions:
           method: get
           cors: true
 
+  bookingListByUserId:
+    handler: api/booking.listByUserId
+    events:
+      - http:
+          path: booking/userId/{userId}
+          method: get
+          cors: true
+  bookingListByLocation:
+    handler: api/booking.listByLocation
+    events:
+      - http:
+          path: booking/location/{location}
+          method: get
+          cors: true
   # bid api functions
 
   bidPut:
@@ -108,19 +128,28 @@ functions:
 
   bidGet:
     handler: api/bid.get
+    memorySize: 128
+    description: get bid details
     events:
       - http:
           path: bid/{bidId}
           method: get
           cors: true
-  bidListByBooking:
-    handler: api/bid.listByBooking
+
+  bidListByBookingId:
+    handler: api/bid.listByBookingId
     events:
       - http:
-          path: bid/booking/{bookingId}
+          path: bid/bookingId/{bookingId}
           method: get
           cors: true
-
+  bidListByUserId:
+    handler: api/bid.listByUserId
+    events:
+      - http:
+          path: bid/userId/{userId}
+          method: get
+          cors: true
   bidList:
     handler: api/bid.list
     memorySize: 128
@@ -134,9 +163,9 @@ functions:
   # car api functions
 
   carPut:
-    handler: api/bid.put
+    handler: api/car.put
     memorySize: 128
-    description: put bid details
+    description: put car details
     events:
       - http:
           path: car
@@ -150,11 +179,11 @@ functions:
           path: car/{carPlate}
           method: get
           cors: true
-  carGetByPhone:
-    handler: api/bid.getByPhone
+  carListByUserId:
+    handler: api/car.listByUserId
     events:
       - http:
-          path: car/phone/{phone}
+          path: car/userId/{userId}
           method: get
           cors: true
 

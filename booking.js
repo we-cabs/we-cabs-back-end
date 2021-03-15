@@ -10,7 +10,7 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
    const requestBody = JSON.parse(event.body);
-   const bookingId=requestBody.bookingId || undefined
+   const bookingId=requestBody.bookingId || undefined;
    const pickupPoint = requestBody.pickupPoint;
    const dropPoint = requestBody.dropPoint;
    const pickupTime = requestBody.pickupTime;
@@ -28,7 +28,9 @@ module.exports.put = (event, context, callback) => {
    const location=requestBody.location;
    const allottedUserId=requestBody.allottedUserId||'';
 
-   if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allotedBid !== 'string') {
+   if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allottedBidId !== 'string') {
+     console.log('t22')
+      console.log(typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allottedBidId !== 'string')
       console.error('Validation Failed');
       callback(new Error('Couldn\'t submit booking because of validation errors.'));
       return;
@@ -92,7 +94,7 @@ const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, di
       expiryTime:expiryTime,
       distance:distance,
       customerDetails:customerDetails,
-      allottedBidId:allotedBid,
+      allottedBidId:allottedBidId,
       submittedAt: timestamp,
       updatedAt: timestamp,
       status:status,
@@ -102,7 +104,7 @@ const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, di
       tripType:tripType,
       location:location,
       allottedUserId:allottedUserId,
-      maxAmount:maxAmount
+      maxAmount:maxAmount,
    };
 };
 
@@ -110,7 +112,7 @@ module.exports.list = (event, context, callback) => {
 
    var params = {
       TableName: process.env.BOOKING_TABLE,
-      ProjectionExpression: "bookingId, pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,maxAmount,reviewCollected,companyReceivableAmount,notes,tripType,location,allottedUserId"
+      // ProjectionExpression: "bookingId, pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,maxAmount,reviewCollected,companyReceivableAmount,notes,tripType,location,allottedUserId"
    };
 
    console.log("Scanning Bid table.");
@@ -162,4 +164,84 @@ module.exports.get = (event, context, callback) => {
           callback(new Error('Couldn\'t fetch booking.'));
           return;
        });
+};
+
+module.exports.listByUserId = (event, context, callback) => {
+   console.log(event.pathParameters)
+   var params = {
+      TableName: process.env.BOOKING_TABLE,
+      // ProjectionExpression: "carPlate,linkedUserId,carManufactureYear,carDetails",
+      FilterExpression: '#allottedUserId = :allottedUserId',
+      ExpressionAttributeValues: {
+         ':allottedUserId': event.pathParameters.userId
+      },
+      ExpressionAttributeNames: {
+         '#allottedUserId' : 'allottedUserId',
+      },
+
+   };
+
+
+   console.log("Scanning booking table.");
+   const onScan = (err, data) => {
+
+      if (err) {
+         console.log('Scan failed to load data. Error JSON:', JSON.stringify(err, null, 2));
+         callback(err);
+      } else {
+         console.log("Scan succeeded.");
+         return callback(null, {
+            statusCode: 200,headers: {
+               "Access-Control-Allow-Origin": "*"
+            },
+
+            body: JSON.stringify({
+               cars: data.Items
+            })
+         });
+      }
+
+   };
+
+   dynamoDb.scan(params, onScan);
+};
+
+module.exports.listByLocation = (event, context, callback) => {
+   console.log(event.pathParameters)
+   var params = {
+      TableName: process.env.BOOKING_TABLE,
+      // ProjectionExpression: "carPlate,linkedUserId,carManufactureYear,carDetails",
+      FilterExpression: '#location = :location',
+      ExpressionAttributeValues: {
+         ':location': event.pathParameters.location
+      },
+      ExpressionAttributeNames: {
+         '#location' : 'location',
+      },
+
+   };
+
+
+   console.log("Scanning booking table.");
+   const onScan = (err, data) => {
+
+      if (err) {
+         console.log('Scan failed to load data. Error JSON:', JSON.stringify(err, null, 2));
+         callback(err);
+      } else {
+         console.log("Scan succeeded.");
+         return callback(null, {
+            statusCode: 200,headers: {
+               "Access-Control-Allow-Origin": "*"
+            },
+
+            body: JSON.stringify({
+               cars: data.Items
+            })
+         });
+      }
+
+   };
+
+   dynamoDb.scan(params, onScan);
 };

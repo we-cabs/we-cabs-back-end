@@ -9,15 +9,14 @@ AWS.config.setPromisesDependency(require('bluebird'));
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
-   const requestBody = JSON.parse(event.body);
+    const requestBody = JSON.parse(event.body);
    const carPlate=requestBody.carPlate ;
    const linkedUserId = requestBody.linkedUserId;
    const carManufactureYear = requestBody.carManufactureYear;
    const carDetails = requestBody.carDetails||{};
 
    if (  typeof carPlate !== 'string'|| typeof   linkedUserId!=='string'|| typeof   carManufactureYear!=='number'|| typeof   carDetails!=='object') {
-    console.error('test')
-      console.error(`Validation Failed ${typeof carPlate !== 'string'},${typeof   linkedUserId!=='string'},${typeof   carManufactureYear!=='number'},${typeof   carDetails!=='object'}`);
+       console.error(`Validation Failed ${typeof carPlate !== 'string'},${typeof   linkedUserId!=='string'},${typeof   carManufactureYear!=='number'},${typeof   carDetails!=='object'}`);
       callback(new Error('Couldn\'t submit car because of validation errors.'));
       return;
    }
@@ -135,32 +134,41 @@ module.exports.get = (event, context, callback) => {
 };
 
 module.exports.listByUserId = (event, context, callback) => {
+console.log(event.pathParameters)
    var params = {
       TableName: process.env.CAR_TABLE,
       ProjectionExpression: "carPlate,linkedUserId,carManufactureYear,carDetails",
       FilterExpression: '#linkedUserId = :linkedUserId',
       ExpressionAttributeValues: {
-         ':linkedUserId': event.userId
+         ':linkedUserId': event.pathParameters.userId
       },
+      ExpressionAttributeNames: {
+         '#linkedUserId' : 'linkedUserId',
+      },
+
    };
 
-   console.log("Scanning Car table.");
 
+   console.log("Scanning car table.");
+   const onScan = (err, data) => {
 
-   dynamoDb.get(params).promise()
-       .then(result => {
-          const response = {
-             statusCode: 200,headers: {
-                "Access-Control-Allow-Origin": "*"
-             },
+      if (err) {
+         console.log('Scan failed to load data. Error JSON:', JSON.stringify(err, null, 2));
+         callback(err);
+      } else {
+         console.log("Scan succeeded.");
+         return callback(null, {
+            statusCode: 200,headers: {
+               "Access-Control-Allow-Origin": "*"
+            },
 
-             body: JSON.stringify(result),
-          };
-          callback(null, response);
-       })
-       .catch(error => {
-          console.error(error);
-          callback(new Error('Couldn\'t fetch car.'));
-          return;
-       });
+            body: JSON.stringify({
+               cars: data.Items
+            })
+         });
+      }
+
+   };
+
+   dynamoDb.scan(params, onScan);
 };
