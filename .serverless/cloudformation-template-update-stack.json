@@ -71,6 +71,12 @@
         }
       }
     },
+    "ImageGetLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/wecabs-dev-imageGet"
+      }
+    },
     "UserPutLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -266,6 +272,39 @@
         }
       }
     },
+    "ImageGetLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
+        },
+        "Handler": "api/image.get",
+        "Runtime": "nodejs12.x",
+        "FunctionName": "wecabs-dev-imageGet",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "USER_TABLE": "wecabs-dev-USER_TABLE",
+            "BOOKING_TABLE": "wecabs-dev-BOOKING_TABLE",
+            "BID_TABLE": "wecabs-dev-BID_TABLE",
+            "CAR_TABLE": "wecabs-dev-CAR_TABLE"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "ImageGetLogGroup"
+      ]
+    },
     "UserPutLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -273,7 +312,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/user.put",
         "Runtime": "nodejs12.x",
@@ -307,7 +346,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/user.get",
         "Runtime": "nodejs12.x",
@@ -340,7 +379,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/user.list",
         "Runtime": "nodejs12.x",
@@ -374,7 +413,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/user.listByLocation",
         "Runtime": "nodejs12.x",
@@ -407,7 +446,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/booking.put",
         "Runtime": "nodejs12.x",
@@ -441,7 +480,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/booking.get",
         "Runtime": "nodejs12.x",
@@ -474,7 +513,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/booking.list",
         "Runtime": "nodejs12.x",
@@ -508,7 +547,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/booking.listByUserId",
         "Runtime": "nodejs12.x",
@@ -541,7 +580,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/booking.listByLocation",
         "Runtime": "nodejs12.x",
@@ -574,7 +613,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/bid.put",
         "Runtime": "nodejs12.x",
@@ -608,7 +647,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/bid.get",
         "Runtime": "nodejs12.x",
@@ -642,7 +681,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/bid.listByBookingId",
         "Runtime": "nodejs12.x",
@@ -675,7 +714,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/bid.listByUserId",
         "Runtime": "nodejs12.x",
@@ -708,7 +747,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/bid.list",
         "Runtime": "nodejs12.x",
@@ -742,7 +781,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/car.put",
         "Runtime": "nodejs12.x",
@@ -776,7 +815,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/car.get",
         "Runtime": "nodejs12.x",
@@ -809,7 +848,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/car.listByUserId",
         "Runtime": "nodejs12.x",
@@ -842,7 +881,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/wecabs/dev/1615776128333-2021-03-15T02:42:08.333Z/wecabs.zip"
+          "S3Key": "serverless/wecabs/dev/1617434918422-2021-04-03T07:28:38.422Z/wecabs.zip"
         },
         "Handler": "api/car.list",
         "Runtime": "nodejs12.x",
@@ -869,193 +908,203 @@
         "CarListLogGroup"
       ]
     },
-    "UserGetLambdaVersionVzDoyKl5R6Jkjb2Yk1TW3FOMG7z0aQx6hShFIFT4o": {
+    "UserGetLambdaVersionOLhWiMd4VnG5ov8pczQakzRflxboGXhUttDoaE58k": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UserGetLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
       }
     },
-    "BookingListLambdaVersiontuK4om1D2DT1sZZ2IngU9588DJvlrrUojJgqGyls4o": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BookingListLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "list all bookings details"
-      }
-    },
-    "BookingGetLambdaVersionwyu9lGLhtVU26X06WtKNtBgdFN6krqPoruQUlndTGI": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BookingGetLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "BookingListByLocationLambdaVersionS3bCxbmiicduBk42VJPByZRzNdMXpfcWzAtGNxzY": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BookingListByLocationLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "BookingPutLambdaVersionJMXCkbp6xm61HJ2x1tddJDedzCKuvHdd5Z3c77ods": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BookingPutLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "put booking details"
-      }
-    },
-    "CarPutLambdaVersionTkZqP2Q1d7ikFcx3n1zqqGucMl1DwRA0t6a9Pk0": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CarPutLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "put car details"
-      }
-    },
-    "CarGetLambdaVersionA4ybE84PllStKw1RgnD9OnDWMRbXf6Jx6wCeWiHtv60": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CarGetLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "CarListByUserIdLambdaVersion1c5ss7Ek1mbuWkopyVokL8mealMKkbkoeLDsraRhMj4": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "CarListByUserIdLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "BidListByUserIdLambdaVersionlWIG1Ek5zaxcRuvm8ONxYqyodAxmM6m5PNhpaEPWQ": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BidListByUserIdLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "UserListLambdaVersionPEEv3M5JrPrKF8XLdCDmgLrvHI3HpiFqAMotiilH8": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "UserListLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "list all users details"
-      }
-    },
-    "BidListLambdaVersionp809CV1bYu2Ig8RgVz1Em5eG5YAr77igzM0cyUbViI": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "BidListLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "list all bids details"
-      }
-    },
-    "UserListByLocationLambdaVersionlWilcAqKsRyR1bnScWvULIK3NzXhY4eXXRhwr7mH68c": {
-      "Type": "AWS::Lambda::Version",
-      "DeletionPolicy": "Retain",
-      "Properties": {
-        "FunctionName": {
-          "Ref": "UserListByLocationLambdaFunction"
-        },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
-      }
-    },
-    "UserPutLambdaVersionVG9kZa6eJt8CKMj7bdWuv49JqHDVAi2rclkeQGBf2A": {
+    "UserPutLambdaVersion2mbtkesofleGpA0C8jVFwJJneVX4Y8ZLK8JHSpoXh0": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UserPutLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
         "Description": "put user details"
       }
     },
-    "BidPutLambdaVersion9p0m7fuQUHEbLVzmebywz8aF2uZXRxRUD8ofclOhe8s": {
+    "BidPutLambdaVersionRHExZ3LTSUE0jGlt7qj1m42RhJ4ps0wuBnQUDMlWl40": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "BidPutLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
         "Description": "put bid details"
       }
     },
-    "BidGetLambdaVersionJ2qOw79efFY2scKYkifUSqZJmwIRSf8XLSFeKDWk": {
+    "BookingGetLambdaVersionxN3MbcVEw0Miiw26hPN5HvSxaUoq2yyg7B8DMulWMg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "BidGetLambdaFunction"
+          "Ref": "BookingGetLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
-        "Description": "get bid details"
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
       }
     },
-    "BidListByBookingIdLambdaVersion6jM6s0hEgC5ScWMhkwnH4091ITOK3hmYDDdW7yjQyw": {
+    "BookingPutLambdaVersionV2HFh8pNs7vBFe0k6wWjMrsLnCleWWKhffDvuHcPu3A": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingPutLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "put booking details"
+      }
+    },
+    "UserListByLocationLambdaVersionMpOZU2nzAwMpia7F3wvyjofCksiKFy5NXLvZWJgF4A": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UserListByLocationLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "ImageGetLambdaVersionSWykZcV6cToGxma5nL6a3SoEdYiQHj8NmwtUYzSbU": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ImageGetLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "UserListLambdaVersionS6K3XjbWIes6wq5T1OjaSoFYayzBENrwaB3PqcNw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "UserListLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "list all users details"
+      }
+    },
+    "BookingListByLocationLambdaVersionZu4mpuEkdEdgjsJrmMAcgJaHx5xMga9tS5UmziBaWI": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingListByLocationLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "BookingListLambdaVersioniBlqmdrEGwL1VRAFZ1H5jZfT3MLKpByVhWk44IyJjM": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BookingListLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "list all bookings details"
+      }
+    },
+    "BidListByBookingIdLambdaVersion6TeHCv5RQBP0jdOK2FWHcadLRUEF0GYd1OAclqk2E7Y": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "BidListByBookingIdLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
       }
     },
-    "BookingListByUserIdLambdaVersionrxWRqXbrySfwgSOc5xpMbH29GMHGvyylWc54iaDoVU": {
+    "BookingListByUserIdLambdaVersionCTUBYvSJbFIIeHFDjKdM9hHdZlh7h4eWu85qCOj73Q": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "BookingListByUserIdLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY="
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
       }
     },
-    "CarListLambdaVersion06hpQG9L1b9QcmGgPzuvrhV9AHsR2Hh1WDigaXQrEI": {
+    "BidListByUserIdLambdaVersionQwLx0iJznLFqeisFl2CuxYLdvB6Odsuz0KO1DOb5zWM": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidListByUserIdLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "CarListLambdaVersionkiZb1d6mmxItOaFF7PZDbvHj4m4WizrbxfxEYH4thw": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CarListLambdaFunction"
         },
-        "CodeSha256": "oDmexfa0wTKkIEnobYEyG+9vrZED4w66y96153plqlY=",
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
         "Description": "list all cars details"
+      }
+    },
+    "BidGetLambdaVersionHHmLcSH57vdu8Qtm1DGruS2eYrEsSidcNi5oM7UEXlg": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidGetLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "get bid details"
+      }
+    },
+    "CarListByUserIdLambdaVersion4CePW3R9mhF7d7d17M8XYLLJgaTNUJsKfQI2Yg3l3M": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CarListByUserIdLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "BidListLambdaVersionMqG0DCJV4eeNr0ZFO5jSuedSFM3pytX3MPLn6Nfls": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "BidListLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "list all bids details"
+      }
+    },
+    "CarGetLambdaVersionBTovQIF7W2IGgbWrnGl40opbfV5eLroEVuIQ0SIFVaQ": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CarGetLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw="
+      }
+    },
+    "CarPutLambdaVersionZB7AlZkkOsMLqHG3carIcgXKHQQaduyD6Ak4tuhw": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "CarPutLambdaFunction"
+        },
+        "CodeSha256": "Ehd7gAXeMIT8RPNApMaeXcVpRjOCQzbHbe6RbY37Biw=",
+        "Description": "put car details"
       }
     },
     "ApiGatewayRestApi": {
@@ -1068,6 +1117,33 @@
           ]
         },
         "Policy": ""
+      }
+    },
+    "ApiGatewayResourceImage": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "image",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceImageNameVar": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceImage"
+        },
+        "PathPart": "{name}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
       }
     },
     "ApiGatewayResourceUser": {
@@ -1317,6 +1393,51 @@
           "Ref": "ApiGatewayResourceCarUserid"
         },
         "PathPart": "{userId}",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodImageNameVarOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "ContentHandling": "CONVERT_TO_TEXT",
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
+              },
+              "ResponseTemplates": {
+                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceImageNameVar"
+        },
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -1950,6 +2071,49 @@
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
+      }
+    },
+    "ApiGatewayMethodImageNameVarGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceImageNameVar"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ImageGetLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
       }
     },
     "ApiGatewayMethodUserPost": {
@@ -2726,7 +2890,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1615776124437": {
+    "ApiGatewayDeployment1617434913546": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -2735,6 +2899,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
+        "ApiGatewayMethodImageNameVarOptions",
         "ApiGatewayMethodUserOptions",
         "ApiGatewayMethodUserPhoneVarOptions",
         "ApiGatewayMethodUserLocationLocationVarOptions",
@@ -2749,6 +2914,7 @@
         "ApiGatewayMethodCarOptions",
         "ApiGatewayMethodCarCarplateVarOptions",
         "ApiGatewayMethodCarUseridUseridVarOptions",
+        "ApiGatewayMethodImageNameVarGet",
         "ApiGatewayMethodUserPost",
         "ApiGatewayMethodUserPhoneVarGet",
         "ApiGatewayMethodUserGet",
@@ -2768,6 +2934,43 @@
         "ApiGatewayMethodCarUseridUseridVarGet",
         "ApiGatewayMethodCarGet"
       ]
+    },
+    "ImageGetLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ImageGetLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
     },
     "UserPutLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
@@ -3549,109 +3752,115 @@
     "UserGetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UserGetLambdaVersionVzDoyKl5R6Jkjb2Yk1TW3FOMG7z0aQx6hShFIFT4o"
-      }
-    },
-    "BookingListLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BookingListLambdaVersiontuK4om1D2DT1sZZ2IngU9588DJvlrrUojJgqGyls4o"
-      }
-    },
-    "BookingGetLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BookingGetLambdaVersionwyu9lGLhtVU26X06WtKNtBgdFN6krqPoruQUlndTGI"
-      }
-    },
-    "BookingListByLocationLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BookingListByLocationLambdaVersionS3bCxbmiicduBk42VJPByZRzNdMXpfcWzAtGNxzY"
-      }
-    },
-    "BookingPutLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BookingPutLambdaVersionJMXCkbp6xm61HJ2x1tddJDedzCKuvHdd5Z3c77ods"
-      }
-    },
-    "CarPutLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "CarPutLambdaVersionTkZqP2Q1d7ikFcx3n1zqqGucMl1DwRA0t6a9Pk0"
-      }
-    },
-    "CarGetLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "CarGetLambdaVersionA4ybE84PllStKw1RgnD9OnDWMRbXf6Jx6wCeWiHtv60"
-      }
-    },
-    "CarListByUserIdLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "CarListByUserIdLambdaVersion1c5ss7Ek1mbuWkopyVokL8mealMKkbkoeLDsraRhMj4"
-      }
-    },
-    "BidListByUserIdLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BidListByUserIdLambdaVersionlWIG1Ek5zaxcRuvm8ONxYqyodAxmM6m5PNhpaEPWQ"
-      }
-    },
-    "UserListLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "UserListLambdaVersionPEEv3M5JrPrKF8XLdCDmgLrvHI3HpiFqAMotiilH8"
-      }
-    },
-    "BidListLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "BidListLambdaVersionp809CV1bYu2Ig8RgVz1Em5eG5YAr77igzM0cyUbViI"
-      }
-    },
-    "UserListByLocationLambdaFunctionQualifiedArn": {
-      "Description": "Current Lambda function version",
-      "Value": {
-        "Ref": "UserListByLocationLambdaVersionlWilcAqKsRyR1bnScWvULIK3NzXhY4eXXRhwr7mH68c"
+        "Ref": "UserGetLambdaVersionOLhWiMd4VnG5ov8pczQakzRflxboGXhUttDoaE58k"
       }
     },
     "UserPutLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UserPutLambdaVersionVG9kZa6eJt8CKMj7bdWuv49JqHDVAi2rclkeQGBf2A"
+        "Ref": "UserPutLambdaVersion2mbtkesofleGpA0C8jVFwJJneVX4Y8ZLK8JHSpoXh0"
       }
     },
     "BidPutLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BidPutLambdaVersion9p0m7fuQUHEbLVzmebywz8aF2uZXRxRUD8ofclOhe8s"
+        "Ref": "BidPutLambdaVersionRHExZ3LTSUE0jGlt7qj1m42RhJ4ps0wuBnQUDMlWl40"
       }
     },
-    "BidGetLambdaFunctionQualifiedArn": {
+    "BookingGetLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BidGetLambdaVersionJ2qOw79efFY2scKYkifUSqZJmwIRSf8XLSFeKDWk"
+        "Ref": "BookingGetLambdaVersionxN3MbcVEw0Miiw26hPN5HvSxaUoq2yyg7B8DMulWMg"
+      }
+    },
+    "BookingPutLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingPutLambdaVersionV2HFh8pNs7vBFe0k6wWjMrsLnCleWWKhffDvuHcPu3A"
+      }
+    },
+    "UserListByLocationLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UserListByLocationLambdaVersionMpOZU2nzAwMpia7F3wvyjofCksiKFy5NXLvZWJgF4A"
+      }
+    },
+    "ImageGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ImageGetLambdaVersionSWykZcV6cToGxma5nL6a3SoEdYiQHj8NmwtUYzSbU"
+      }
+    },
+    "UserListLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "UserListLambdaVersionS6K3XjbWIes6wq5T1OjaSoFYayzBENrwaB3PqcNw"
+      }
+    },
+    "BookingListByLocationLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingListByLocationLambdaVersionZu4mpuEkdEdgjsJrmMAcgJaHx5xMga9tS5UmziBaWI"
+      }
+    },
+    "BookingListLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BookingListLambdaVersioniBlqmdrEGwL1VRAFZ1H5jZfT3MLKpByVhWk44IyJjM"
       }
     },
     "BidListByBookingIdLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BidListByBookingIdLambdaVersion6jM6s0hEgC5ScWMhkwnH4091ITOK3hmYDDdW7yjQyw"
+        "Ref": "BidListByBookingIdLambdaVersion6TeHCv5RQBP0jdOK2FWHcadLRUEF0GYd1OAclqk2E7Y"
       }
     },
     "BookingListByUserIdLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BookingListByUserIdLambdaVersionrxWRqXbrySfwgSOc5xpMbH29GMHGvyylWc54iaDoVU"
+        "Ref": "BookingListByUserIdLambdaVersionCTUBYvSJbFIIeHFDjKdM9hHdZlh7h4eWu85qCOj73Q"
+      }
+    },
+    "BidListByUserIdLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidListByUserIdLambdaVersionQwLx0iJznLFqeisFl2CuxYLdvB6Odsuz0KO1DOb5zWM"
       }
     },
     "CarListLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CarListLambdaVersion06hpQG9L1b9QcmGgPzuvrhV9AHsR2Hh1WDigaXQrEI"
+        "Ref": "CarListLambdaVersionkiZb1d6mmxItOaFF7PZDbvHj4m4WizrbxfxEYH4thw"
+      }
+    },
+    "BidGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidGetLambdaVersionHHmLcSH57vdu8Qtm1DGruS2eYrEsSidcNi5oM7UEXlg"
+      }
+    },
+    "CarListByUserIdLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CarListByUserIdLambdaVersion4CePW3R9mhF7d7d17M8XYLLJgaTNUJsKfQI2Yg3l3M"
+      }
+    },
+    "BidListLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "BidListLambdaVersionMqG0DCJV4eeNr0ZFO5jSuedSFM3pytX3MPLn6Nfls"
+      }
+    },
+    "CarGetLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CarGetLambdaVersionBTovQIF7W2IGgbWrnGl40opbfV5eLroEVuIQ0SIFVaQ"
+      }
+    },
+    "CarPutLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "CarPutLambdaVersionZB7AlZkkOsMLqHG3carIcgXKHQQaduyD6Ak4tuhw"
       }
     },
     "ServiceEndpoint": {

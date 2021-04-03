@@ -34,7 +34,13 @@ provider:
         - dynamodb:PutItem
       Resource: "*"
 functions:
-
+  imageGet:
+    handler: api/image.get
+    events:
+      - http:
+          path: image/{name}
+          method: get
+          cors: true
  # user api functions
 
   userPut:

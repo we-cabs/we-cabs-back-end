@@ -24,9 +24,12 @@
       <change beforePath="$PROJECT_DIR$/.serverless/cloudformation-template-update-stack.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/cloudformation-template-update-stack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/serverless-state.json" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/serverless-state.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.serverless/wecabs.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.serverless/wecabs.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bid.js" beforeDir="false" afterPath="$PROJECT_DIR$/bid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/booking.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/car.js" beforeDir="false" afterPath="$PROJECT_DIR$/car.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/wc.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/serverless.yml" beforeDir="false" afterPath="$PROJECT_DIR$/serverless.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/user.js" afterDir="false" />
     </list>
@@ -34,6 +37,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,7 +56,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/samples" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -59,11 +69,21 @@
       <recent name="$PROJECT_DIR$/samples/booking_api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/samples" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/samples/booking_api" />
       <recent name="$PROJECT_DIR$/imgs" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="testUploadImage.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/samples/testUploadImage.js" working-dir="$PROJECT_DIR$/samples">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.testUploadImage.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -89,7 +109,14 @@
       <workItem from="1615020708376" duration="3607000" />
       <workItem from="1615254717927" duration="3686000" />
       <workItem from="1615344289556" duration="6277000" />
-      <workItem from="1615768574453" duration="6958000" />
+      <workItem from="1615768574453" duration="7325000" />
+      <workItem from="1616373386532" duration="5513000" />
+      <workItem from="1616461923983" duration="3524000" />
+      <workItem from="1616527605394" duration="598000" />
+      <workItem from="1616552267198" duration="598000" />
+      <workItem from="1616687674818" duration="599000" />
+      <workItem from="1616807680084" duration="599000" />
+      <workItem from="1617063709475" duration="8569000" />
     </task>
     <servers />
   </component>
@@ -113,11 +140,59 @@
       <screen x="0" y="23" width="1680" height="937" />
     </state>
     <state x="563" y="300" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.937@0.23.1680.937" timestamp="1613617641117" />
-    <state width="500" height="445" key="SwitcherDM" timestamp="1615347318329">
-      <screen x="0" y="23" width="1680" height="947" />
+    <state width="1659" height="312" key="GridCell.Tab.0.bottom" timestamp="1616377942759">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.0.bottom/0.23.1680.944@0.23.1680.944" timestamp="1616377942759" />
+    <state width="1659" height="312" key="GridCell.Tab.0.center" timestamp="1616377942757">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.0.center/0.23.1680.944@0.23.1680.944" timestamp="1616377942757" />
+    <state width="1659" height="312" key="GridCell.Tab.0.left" timestamp="1616377942756">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.0.left/0.23.1680.944@0.23.1680.944" timestamp="1616377942756" />
+    <state width="1659" height="312" key="GridCell.Tab.0.right" timestamp="1616377942758">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.0.right/0.23.1680.944@0.23.1680.944" timestamp="1616377942758" />
+    <state width="1659" height="312" key="GridCell.Tab.1.bottom" timestamp="1616377942460">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.1.bottom/0.23.1680.944@0.23.1680.944" timestamp="1616377942460" />
+    <state width="1659" height="312" key="GridCell.Tab.1.center" timestamp="1616377942460">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.1.center/0.23.1680.944@0.23.1680.944" timestamp="1616377942460" />
+    <state width="1659" height="312" key="GridCell.Tab.1.left" timestamp="1616377942459">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.1.left/0.23.1680.944@0.23.1680.944" timestamp="1616377942459" />
+    <state width="1659" height="312" key="GridCell.Tab.1.right" timestamp="1616377942460">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.1.right/0.23.1680.944@0.23.1680.944" timestamp="1616377942460" />
+    <state width="1659" height="312" key="GridCell.Tab.2.bottom" timestamp="1616377943117">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.2.bottom/0.23.1680.944@0.23.1680.944" timestamp="1616377943117" />
+    <state width="1659" height="312" key="GridCell.Tab.2.center" timestamp="1616377943114">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.2.center/0.23.1680.944@0.23.1680.944" timestamp="1616377943114" />
+    <state width="1659" height="312" key="GridCell.Tab.2.left" timestamp="1616377943113">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.2.left/0.23.1680.944@0.23.1680.944" timestamp="1616377943113" />
+    <state width="1659" height="312" key="GridCell.Tab.2.right" timestamp="1616377943116">
+      <screen x="0" y="23" width="1680" height="944" />
+    </state>
+    <state width="1659" height="312" key="GridCell.Tab.2.right/0.23.1680.944@0.23.1680.944" timestamp="1616377943116" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1617243199838">
+      <screen x="0" y="23" width="1680" height="944" />
     </state>
     <state width="500" height="441" key="SwitcherDM/0.23.1680.937@0.23.1680.937" timestamp="1613615369616" />
-    <state width="500" height="445" key="SwitcherDM/0.23.1680.944@0.23.1680.944" timestamp="1615257278171" />
+    <state width="500" height="445" key="SwitcherDM/0.23.1680.944@0.23.1680.944" timestamp="1617243199838" />
     <state width="500" height="445" key="SwitcherDM/0.23.1680.947@0.23.1680.947" timestamp="1615347318329" />
     <state x="541" y="248" width="598" height="490" key="find.popup" timestamp="1615347165262">
       <screen x="0" y="23" width="1680" height="947" />
@@ -126,10 +201,11 @@
     <state x="541" y="247" width="598" height="493" key="find.popup/0.23.1680.941@0.23.1680.941" timestamp="1613455986511" />
     <state x="541" y="248" width="598" height="494" key="find.popup/0.23.1680.944@0.23.1680.944" timestamp="1615020793160" />
     <state x="541" y="248" width="598" height="490" key="find.popup/0.23.1680.947@0.23.1680.947" timestamp="1615347165262" />
-    <state x="505" y="230" width="670" height="680" key="search.everywhere.popup" timestamp="1614377263984">
-      <screen x="0" y="23" width="1680" height="952" />
+    <state x="505" y="228" width="670" height="675" key="search.everywhere.popup" timestamp="1617243321220">
+      <screen x="0" y="23" width="1680" height="944" />
     </state>
     <state x="505" y="227" width="670" height="669" key="search.everywhere.popup/0.23.1680.937@0.23.1680.937" timestamp="1613616211886" />
+    <state x="505" y="228" width="670" height="675" key="search.everywhere.popup/0.23.1680.944@0.23.1680.944" timestamp="1617243321220" />
     <state x="505" y="229" width="670" height="676" key="search.everywhere.popup/0.23.1680.947@0.23.1680.947" timestamp="1613410778486" />
     <state x="505" y="230" width="670" height="680" key="search.everywhere.popup/1680.-244.3440.1417/0.23.1680.952@0.23.1680.952" timestamp="1614377263984" />
   </component>

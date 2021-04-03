@@ -4,6 +4,7 @@
   "dependencies": {
     "aws-sdk": "^2.843.0",
     "bluebird": "^3.7.2",
+    "node-fetch": "^2.6.1",
     "serverless-domain-manager": "^5.1.0",
     "uuid": "^8.3.2"
   }

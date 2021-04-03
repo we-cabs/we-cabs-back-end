@@ -9,7 +9,10 @@ AWS.config.setPromisesDependency(require('bluebird'));
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.put = (event, context, callback) => {
+
    const requestBody = JSON.parse(event.body);
+   console.log('requestBody');
+   console.log(requestBody);
    const bookingId=requestBody.bookingId || undefined;
    const pickupPoint = requestBody.pickupPoint;
    const dropPoint = requestBody.dropPoint;
@@ -20,7 +23,10 @@ module.exports.put = (event, context, callback) => {
    const customerDetails = requestBody.customerDetails || {};
    const allottedBidId=requestBody.allottedBidId || '';
    const status=requestBody.status||'';
-   const maxAmount=requestBody.maxAmount;
+   const maxPrice=requestBody.maxPrice||0;
+   const minPrice=requestBody.minPrice||0;
+   const basePrice=requestBody.basePrice||0;
+
    const reviewCollected=requestBody.reviewCollected||0;
    const notes=requestBody.notes||'';
    const companyReceivableAmount=requestBody.companyReceivableAmount||0;
@@ -29,20 +35,17 @@ module.exports.put = (event, context, callback) => {
    const allottedUserId=requestBody.allottedUserId||'';
 
    if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allottedBidId !== 'string') {
-     console.log('t22')
-      console.log(typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allottedBidId !== 'string')
-      console.error('Validation Failed');
-      callback(new Error('Couldn\'t submit booking because of validation errors.'));
+    callback(new Error('Couldn\'t submit booking because of validation errors.'));
       return;
    }
 
-   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,status,bookingId, maxAmount,
+   submitBooking(bookingInfo(pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,status,bookingId, maxPrice,
    reviewCollected,
        companyReceivableAmount,
    notes,
    tripType,
    location,
-   allottedUserId))
+   allottedUserId,minPrice,basePrice))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -77,13 +80,13 @@ const submitBooking = booking => {
        .then(res => booking);
 };
 
-const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails, allottedBidId, status, bookingId, maxAmount,
+const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, distance, customerDetails,allottedBidId,status,bookingId, maxPrice,
                      reviewCollected,
                      companyReceivableAmount,
                      notes,
                      tripType,
                      location,
-                     allottedUserId) => {
+                     allottedUserId,minPrice,basePrice) => {
    const timestamp = new Date().getTime();
    return {
       bookingId: bookingId||uuid.v1(),
@@ -104,7 +107,9 @@ const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, di
       tripType:tripType,
       location:location,
       allottedUserId:allottedUserId,
-      maxAmount:maxAmount,
+      maxPrice:maxPrice,
+      minPrice:minPrice,
+      basePrice:basePrice
    };
 };
 

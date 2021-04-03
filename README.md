@@ -19,6 +19,7 @@
       bookingsCount
       avgRating
       approvalStatus
+      imagesNames
             
 ### 2- BOOKING
         
@@ -32,7 +33,9 @@
       customerDetails
       allottedBidId
       status
-      maxAmount
+      basePrice
+      maxPrice
+      minPrice
       reviewCollected
       companyReceivableAmount
       notes
@@ -57,7 +60,8 @@
       carPlate
       linkedUserId
       carManufactureYear
-      carDetails 
+      carDetails
+      imagesNames
       
 # Api:
 

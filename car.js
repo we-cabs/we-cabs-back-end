@@ -14,7 +14,7 @@ module.exports.put = (event, context, callback) => {
    const linkedUserId = requestBody.linkedUserId;
    const carManufactureYear = requestBody.carManufactureYear;
    const carDetails = requestBody.carDetails||{};
-
+   const imagesNames=requestBody.imagesNames||{}
    if (  typeof carPlate !== 'string'|| typeof   linkedUserId!=='string'|| typeof   carManufactureYear!=='number'|| typeof   carDetails!=='object') {
        console.error(`Validation Failed ${typeof carPlate !== 'string'},${typeof   linkedUserId!=='string'},${typeof   carManufactureYear!=='number'},${typeof   carDetails!=='object'}`);
       callback(new Error('Couldn\'t submit car because of validation errors.'));
@@ -22,9 +22,9 @@ module.exports.put = (event, context, callback) => {
    }
 
    submitCar(carInfo(   carPlate,
-   linkedUserId,
-   carManufactureYear,
-   carDetails ))
+       linkedUserId,
+       carManufactureYear,
+       carDetails,imagesNames))
        .then(res => {
           callback(null, {
              statusCode: 200,
@@ -63,7 +63,7 @@ const submitCar = car => {
 const carInfo = (carPlate,
                  linkedUserId,
                  carManufactureYear,
-                 carDetails) => {
+                 carDetails,imagesNames) => {
    const timestamp = new Date().getTime();
    return {
 
@@ -72,6 +72,7 @@ const carInfo = (carPlate,
       carManufactureYear: carManufactureYear,
       carDetails:carDetails,
       updatedAt: timestamp,
+      imagesNames:imagesNames
 
    };
 };
