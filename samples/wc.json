@@ -142,6 +142,142 @@
 			]
 		},
 		{
+			"name": "request",
+			"item": [
+				{
+					"name": "post new request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pickupPoint\": \"Test114444\",\n    \"dropPoint\": \"testD\",\n    \"pickupTime\": 12,\n    \"carType\": \"testC\",\n    \"expiryTime\": 0,\n    \"location\": \"test2\",\n    \"tripType\": \"test\",\n    \"maxAmount\": 22\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dev/request",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location\": \"test\",\n    \"distance\": 0,\n    \"status\": \"\",\n    \"allottedBidId\": \"\",\n    \"customerDetails\": {},\n    \"reviewCollected\": 0,\n    \"submittedAt\": 1615774437895,\n    \"bookingId\": \"19959880-8534-11eb-a8cc-17933df83571\",\n    \"tripType\": \"test\",\n    \"allottedUserId\": \"test22\",\n    \"maxAmount\": 22,\n    \"carType\": \"testC\",\n    \"companyReceivableAmount\": 0,\n    \"pickupPoint\": \"Test114444\",\n    \"pickupTime\": 12,\n    \"updatedAt\": 1615774437895,\n    \"notes\": \"\",\n    \"dropPoint\": \"testD\",\n    \"expiryTime\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/dev/booking",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dev/booking/19959880-8534-11eb-a8cc-17933df83571",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"booking",
+								"19959880-8534-11eb-a8cc-17933df83571"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dev/booking",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list requests by userId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dev/booking/userId/test22",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"booking",
+								"userId",
+								"test22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list requests by location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dev/request/location/test2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"request",
+								"location",
+								"test2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "user",
 			"item": [
 				{
@@ -597,6 +733,50 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "image",
+			"item": [
+				{
+					"name": "get image upload url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dev/image/test",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"dev",
+								"image",
+								"test"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}

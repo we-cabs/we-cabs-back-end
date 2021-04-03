@@ -25,6 +25,7 @@ provider:
     BOOKING_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BOOKING_TABLE
     BID_TABLE: ${self:service}-${opt:stage, self:provider.stage}-BID_TABLE
     CAR_TABLE:  ${self:service}-${opt:stage, self:provider.stage}-CAR_TABLE
+    REQUEST_TABLE:  ${self:service}-${opt:stage, self:provider.stage}-REQUEST_TABLE
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -34,13 +35,36 @@ provider:
         - dynamodb:PutItem
       Resource: "*"
 functions:
-  imageGet:
-    handler: api/image.get
+
+  # request api functions
+
+  requestPut:
+    handler: api/request.put
+    memorySize: 128
+    description: put request details
     events:
       - http:
-          path: image/{name}
+          path: request
+          method: post
+          cors: true
+  requestGet:
+    handler: api/request.get
+    events:
+      - http:
+          path: request/{requestId}
           method: get
           cors: true
+
+  requestList:
+    handler: api/request.list
+    memorySize: 128
+    description: list all requests details
+    events:
+      - http:
+          path: request
+          method: get
+          cors: true
+
  # user api functions
 
   userPut:
@@ -300,3 +324,22 @@ resources:
         StreamSpecification:
           StreamViewType: "NEW_AND_OLD_IMAGES"
         TableName: ${self:provider.environment.CAR_TABLE}
+
+    RequestDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: "requestId"
+            AttributeType: "S"
+        KeySchema:
+          -
+            AttributeName: "requestId"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        StreamSpecification:
+          StreamViewType: "NEW_AND_OLD_IMAGES"
+        TableName: ${self:provider.environment.REQUEST_TABLE}
