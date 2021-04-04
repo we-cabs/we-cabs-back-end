@@ -25,6 +25,7 @@ module.exports.put = (event, context, callback) => {
    const approvalStatus=requestBody.approvalStatus||'notApproved'
    const imagesNames=requestBody.imagesNames||{}
    const notifications=requestBody.notifications||{}
+   const deviceToken=requestBody.deviceToken||''
 
    if (typeof carsBooked !== 'number' ||typeof bookingsCount !== 'number' || typeof avgRating !== 'number' || typeof role !== 'string' || typeof location !== 'string' ||  typeof carsAvailable !== 'number' ||typeof carsDetails !== 'object' || typeof name !== 'string' ||typeof profileImgUrl !== 'string' || typeof phone !== 'string' || typeof email !== 'string'|| typeof password !== 'string') {
       console.error('Validation Failed');
@@ -32,7 +33,7 @@ module.exports.put = (event, context, callback) => {
       return;
    }
 
-   submitUser(userInfo(name,profileImgUrl ,phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked,approvalStatus,imagesNames,notifications))
+   submitUser(userInfo(name,profileImgUrl ,phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked,approvalStatus,imagesNames,notifications,deviceToken))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -67,7 +68,7 @@ const submitUser = user => {
        .then(res => user);
 };
 
-const userInfo = (name,profileImgUrl ,phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked,approvalStatus,imagesNames,notifications) => {
+const userInfo = (name,profileImgUrl ,phone,email, password,carsAvailable,carsDetails,role,location,bookingsCount,avgRating,carsBooked,approvalStatus,imagesNames,notifications,deviceToken) => {
    const timestamp = new Date().getTime();
    return {
       // id: uuid.v1(),
@@ -88,7 +89,8 @@ const userInfo = (name,profileImgUrl ,phone,email, password,carsAvailable,carsDe
       approvalStatus:approvalStatus,
       userId:phone,
       imagesNames:imagesNames,
-      notifications:notifications
+      notifications:notifications,
+      deviceToken:deviceToken
    };
 };
 
