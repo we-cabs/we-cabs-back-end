@@ -95,10 +95,30 @@ functions:
           cors: true
   userListByLocation:
     handler: api/user.listByLocation
+    memorySize: 128
+    description: list all users details by location
     events:
       - http:
           path: user/location/{location}
           method: get
+          cors: true
+  userAddNotificationByLocation:
+    handler: api/user.addNotificationByLocation
+    memorySize: 128
+    description: add notifications
+    events:
+      - http:
+          path: user/notification/location
+          method: post
+          cors: true
+  userAddNotificationPush:
+    handler: api/user.addNotificationPush
+    memorySize: 128
+    description: add push notifications
+    events:
+      - http:
+          path: user/addNotificationPush
+          method: post
           cors: true
   # booking api functions
 

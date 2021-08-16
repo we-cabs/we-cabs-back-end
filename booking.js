@@ -33,6 +33,8 @@ module.exports.put = (event, context, callback) => {
    const tripType=requestBody.tripType;
    const location=requestBody.location;
    const allottedUserId=requestBody.allottedUserId||'';
+   const isRequest=requestBody.isRequest||'';
+   const startStopTripMessage= requestBody.startStopTripMessage || 'pending';
 
    if (typeof status !== 'string' ||typeof pickupPoint !== 'string' || typeof dropPoint !== 'string' || typeof pickupTime !== 'number'|| typeof carType !== 'string'|| typeof expiryTime !== 'number'|| typeof distance !== 'number'|| typeof customerDetails !== 'object'|| typeof allottedBidId !== 'string') {
     callback(new Error('Couldn\'t submit booking because of validation errors.'));
@@ -45,7 +47,7 @@ module.exports.put = (event, context, callback) => {
    notes,
    tripType,
    location,
-   allottedUserId,minPrice,basePrice))
+   allottedUserId,minPrice,basePrice,isRequest,startStopTripMessage))
        .then(res => {
           callback(null, {
              statusCode: 200,headers: {
@@ -86,7 +88,7 @@ const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, di
                      notes,
                      tripType,
                      location,
-                     allottedUserId,minPrice,basePrice) => {
+                     allottedUserId,minPrice,basePrice,isRequest,startStopTripMessage) => {
    const timestamp = new Date().getTime();
    return {
       bookingId: bookingId||uuid.v1(),
@@ -109,7 +111,9 @@ const bookingInfo = (pickupPoint, dropPoint, pickupTime, carType, expiryTime, di
       allottedUserId:allottedUserId,
       maxPrice:maxPrice,
       minPrice:minPrice,
-      basePrice:basePrice
+      basePrice:basePrice,
+      isRequest:isRequest,
+      startStopTripMessage:startStopTripMessage
    };
 };
 

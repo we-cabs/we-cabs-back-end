@@ -6,6 +6,8 @@
     "bluebird": "^3.7.2",
     "node-fetch": "^2.6.1",
     "serverless-domain-manager": "^5.1.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "firebase-admin": "^9.11.0"
+
   }
 }

@@ -20,6 +20,7 @@
       avgRating
       approvalStatus
       imagesNames
+      balance
             
 ### 2- BOOKING
         
