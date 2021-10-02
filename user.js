@@ -352,9 +352,123 @@ const submitNotificationPush = async Details => {
                 console.log(item)
                 const options = notification_options
                 if (item['deviceToken']) {
+                    console.log('sendToDevice')
+
+                    console.log(item)
+
+                    console.log(item['deviceToken'])
+
                     admin.messaging().sendToDevice(item['deviceToken'], Details.message, options)
                         .then(response => {
+                            console.log(`processed sendToDevice ${item['deviceToken']}`)
+                            console.log(`processed sendToDevice ${item['userId']}`)
+
                            console.log(response)
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+                // const lowerCaseLocation = item.location.toLowerCase()
+                // const notificationLocation = locationDetails.location.toLowerCase();
+                // if (lowerCaseLocation.includes(notificationLocation)) {
+                //    let notifications = item.notifications;
+                //    notifications[timestamp] = locationDetails;
+                //    item['notifications'] = notifications;
+                //    const userInfo = {
+                //       TableName: process.env.USER_TABLE,
+                //       Item: item,
+                //    };
+                //    await dynamoDb.put(userInfo).promise()
+                //    console.log('notification added')
+                // }
+            }
+
+            // continue scanning if we have more movies, because
+            // scan can retrieve a maximum of 1MB of data
+            if (typeof data.LastEvaluatedKey != "undefined") {
+                console.log("Scanning for more...");
+                params.ExclusiveStartKey = data.LastEvaluatedKey;
+                dynamoDb.scan(params, onScan);
+            }
+        }
+    }
+
+    dynamoDb.scan(params, onScan);
+};
+
+module.exports.addNotificationSinglePush = (event, context, callback) => {
+    const requestBody = JSON.parse(event.body);
+    console.log(event)
+const userId=event.pathParameters.userId
+
+    const message = requestBody.message
+
+    submitNotificationSinglePush({message,userId}).then(() => {
+
+        return callback(null, {
+            statusCode: 200, headers: {
+                "Access-Control-Allow-Origin": "*"
+            },
+            body: JSON.stringify({
+                requestBody: requestBody
+            })
+        });
+
+    }).catch((e) => {
+        return callback(null, {
+            statusCode: 500,
+            body: JSON.stringify({
+                message: `Unable to submit notification`,
+                error: e
+            })
+        })
+    })
+
+};
+
+
+const submitNotificationSinglePush = async Details => {
+
+    console.log('Submitting notification');
+    var params = {
+        TableName: process.env.USER_TABLE,
+        // FilterExpression: '#location = :location',
+        // ExpressionAttributeValues: {
+        //    ':location': locationDetails.location
+        // },
+        // ExpressionAttributeNames: {
+        //    '#location': 'location',
+        // },
+
+    };
+
+    async function onScan(err, data) {
+        if (err) {
+            console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
+        } else {
+            // const timestamp = new Date().getTime();
+
+            // print all the movies
+            console.log("Scan succeeded.");
+            for (const item of data.Items) {
+                console.log('processing item')
+
+                console.log(item)
+                const options = notification_options
+                if (item['deviceToken'] && Details.userId===item['userId']) {
+                    console.log('sendToDevice')
+
+                    console.log(item)
+
+                    console.log(item['deviceToken'])
+
+                    admin.messaging().sendToDevice(item['deviceToken'], Details.message, options)
+                        .then(response => {
+                            console.log(`processed sendToDevice ${item['deviceToken']}`)
+                            console.log(`processed sendToDevice ${item['userId']}`)
+
+                            console.log(response)
                         })
                         .catch(error => {
                             console.log(error);

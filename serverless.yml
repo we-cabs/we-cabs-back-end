@@ -120,6 +120,15 @@ functions:
           path: user/addNotificationPush
           method: post
           cors: true
+  userAddNotificationSinglePush:
+    handler: api/user.addNotificationSinglePush
+    memorySize: 128
+    description: add push notifications for single user
+    events:
+      - http:
+          path: user/addNotificationPush/{userId}
+          method: post
+          cors: true
   # booking api functions
 
   bookingPut:
